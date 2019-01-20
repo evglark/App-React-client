@@ -1,7 +1,6 @@
 # IDEs
-/.project
-/.vscode
 /.idea
+/.vscode
 
 # Npm, Yarn & node_modules
 *lock.json

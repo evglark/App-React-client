@@ -1,7 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
 
-import App from './App';
-import './index.less';
+import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const HTML_elem = document.querySelector('#root')
+
+const renderApp = (Component) => {
+    render(
+        <Component />,
+        HTML_elem
+    )
+}
+
+renderApp(App)
