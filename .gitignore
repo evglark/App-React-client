@@ -4,7 +4,7 @@
 
 # Npm, Yarn & node_modules
 *lock.json
-yarn.lock
+*.lock
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

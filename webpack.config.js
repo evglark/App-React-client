@@ -1,37 +1,130 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixerPlugin = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = {
-    entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'main.js',
-        publicPath: '/'
+const cssStyles = [
+    {
+        loader: 'css-loader',
+        options: {
+            sourceMap: true,
+            sourceComments: true,
+            importLoaders: 1,
+        },
+    }, {
+        loader: 'postcss-loader',
+        options: {
+            plugins: [
+                autoprefixerPlugin({
+                    browsers: ['> 1%', 'last 2 versions'],
+                }),
+            ],
+        },
     },
-    devServer: {
-        overlay: true
+];
+
+const sassStyles = cssStyles.concat([
+    {
+        loader: 'sass-loader',
+        options: {
+            sourceMap: true,
+            sourceComments: true,
+        },
     },
-    plugins: [
-        new CleanWebpackPlugin(['./dist']),
-        new HtmlWebpackPlugin({ template: './public/index.html', inject: false }),
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                use: [
-                    'babel-loader',
-                    'eslint-loader'
-                ]
-            }
-        ]
-    }
-}
+]);
 
 module.exports = (env, options) => {
-    let production = options.mode === 'production'
-    config.devtool = production ? false : 'source-map'
+    let DEV = options.mode === 'development';
+    let entry = {entry: path.resolve(__dirname, './src')};
+    let output, devTools, devServer,
+        moduleRulesUseCss, moduleRulesUseSass,
+        optimization;
 
-    return config;
+    if (DEV) {
+        console.log('DEV MODE ON');
+
+        output = {output: {}};
+        devTools = {devtool: 'source-map'};
+        devServer = { 
+            devServer: { 
+                port: 3001, 
+                overlay: true 
+            } 
+        };
+        moduleRulesUseCss = ['style-loader'].concat(cssStyles);
+        moduleRulesUseSass = ['style-loader'].concat(sassStyles);
+        optimization = {optimization: {}};
+    } else {
+        console.log('PROD MODE ON');
+
+        output = {
+            output: {
+                path: path.resolve(__dirname, './dist'),
+                filename: 'main.js'
+            }
+        };
+        devTools = {devtool: false};
+        devServer = {devServer: {}};
+        moduleRulesUseCss = [MiniCssExtractPlugin.loader].concat(sassStyles);
+        moduleRulesUseSass = [MiniCssExtractPlugin.loader].concat(sassStyles);
+        optimization = {
+            optimization: {
+                minimizer: [
+                    new UglifyJsPlugin({
+                        cache: true,
+                        parallel: true,
+                        sourceMap: false,
+                    }),
+                    new MiniCssExtractPlugin({
+                        filename: './style/[name].css',
+                        chunkFileName: './style/[id].css',
+                    }),
+                ]
+            }
+        };
+    }
+
+    return ({
+        ...entry,
+        ...output,
+        ...devTools,
+        ...devServer,
+        ...optimization,
+        plugins: [
+            new CleanWebpackPlugin(['./dist']),
+            new HtmlWebpackPlugin({ template: './public/index.html', inject: false })
+        ],
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    use: [
+                        'babel-loader',
+                        'eslint-loader'
+                    ]
+                },
+                {
+                    test: /\.(css)$/,
+                    use: moduleRulesUseCss
+                },
+                {
+                    test: /\.(sass|scss)$/,
+                    use: moduleRulesUseSass
+                },
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: 'image-webpack-loader'
+                },
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: ['file-loader', {
+                        loader: 'url-loader',
+                        options: { limit: 40000 }
+                    }]
+                }
+            ]
+        }
+    });
 }
