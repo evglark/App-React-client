@@ -47,11 +47,11 @@ module.exports = (env, options) => {
 
         output = {output: {}};
         devTools = {devtool: 'source-map'};
-        devServer = { 
-            devServer: { 
-                port: 3001, 
-                overlay: true 
-            } 
+        devServer = {
+            devServer: {
+                port: 3001,
+                overlay: true
+            }
         };
         moduleRulesUseCss = ['style-loader'].concat(cssStyles);
         moduleRulesUseSass = ['style-loader'].concat(sassStyles);
@@ -62,7 +62,8 @@ module.exports = (env, options) => {
         output = {
             output: {
                 path: path.resolve(__dirname, './dist'),
-                filename: 'main.js'
+                filename: '[name].js',
+                chunkFilename: '[name].js',
             }
         };
         devTools = {devtool: false};
@@ -92,18 +93,27 @@ module.exports = (env, options) => {
         ...devTools,
         ...devServer,
         ...optimization,
-        plugins: [
-            new CleanWebpackPlugin(['./dist']),
-            new HtmlWebpackPlugin({ template: './public/index.html', inject: false })
-        ],
+        entry: {
+            main: path.resolve(__dirname, './src')
+        },
+        resolve: {
+            extensions: ['.ts', '.tsx', '.js', '.jsx'],
+            modules: ['node_modules', path.resolve(__dirname, '../src')],
+            alias: {
+                main: path.resolve(__dirname, '../src/')
+            }
+        },
         module: {
             rules: [
                 {
+                    test: /\.(ts|tsx)$/,
+                    use: 'awesome-typescript-loader',
+                    exclude: /node_modules/
+                },
+                {
                     test: /\.(js|jsx)$/,
-                    use: [
-                        'babel-loader',
-                        'eslint-loader'
-                    ]
+                    use: ['babel-loader', 'eslint-loader'],
+                    exclude: /node_modules/
                 },
                 {
                     test: /\.(css)$/,
@@ -125,6 +135,10 @@ module.exports = (env, options) => {
                     }]
                 }
             ]
-        }
+        },
+        plugins: [
+            new CleanWebpackPlugin(['./dist']),
+            new HtmlWebpackPlugin({ template: './public/index.html', inject: false })
+        ],
     });
 }
