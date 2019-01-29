@@ -45,7 +45,13 @@ module.exports = (env, options) => {
     if (DEV) {
         console.log('DEV MODE ON');
 
-        output = {output: {}};
+        output = {
+            output: {
+                path: path.resolve(__dirname, './dist'),
+                publicPath: 'http://localhost:3001/',
+                filename: '[name].js'
+            }
+        };
         devTools = {devtool: 'source-map'};
         devServer = {
             devServer: {
@@ -98,10 +104,7 @@ module.exports = (env, options) => {
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx'],
-            modules: ['node_modules', path.resolve(__dirname, '../src')],
-            alias: {
-                main: path.resolve(__dirname, '../src/')
-            }
+            modules: ['node_modules', path.resolve(__dirname, '../src')]
         },
         module: {
             rules: [
