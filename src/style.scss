@@ -12,4 +12,6 @@ $margin: 16px;
     border-color: $blue;
 }
 
+@import './components/layouts/layouts.scss';
+
 @import 'node_modules/bootstrap/scss/bootstrap';

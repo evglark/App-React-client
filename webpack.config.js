@@ -56,7 +56,8 @@ module.exports = (env, options) => {
         devServer = {
             devServer: {
                 port: 3001,
-                overlay: true
+                overlay: true,
+                historyApiFallback: true,
             }
         };
         moduleRulesUseCss = ['style-loader'].concat(cssStyles);

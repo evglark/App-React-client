@@ -1,0 +1,47 @@
+.wrap {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 45px;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+
+    background-color: $blue;
+
+    a {
+        color: black;
+    }
+}
+
+.styled-body {
+    padding-top: 66px;
+    padding-bottom: 160px;
+}
+
+.styled-wrap {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 550px;
+    padding: 0 16px;
+    
+    box-sizing: border-box;
+}
+
+.container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: $blue;
+}
