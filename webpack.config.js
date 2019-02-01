@@ -5,42 +5,42 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const cssStyles = [
-    {
-        loader: 'css-loader',
-        options: {
-            sourceMap: true,
-            sourceComments: true,
-            importLoaders: 1,
-        },
-    }, {
-        loader: 'postcss-loader',
-        options: {
-            plugins: [
-                autoprefixerPlugin({
-                    browsers: ['> 1%', 'last 2 versions'],
-                }),
-            ],
-        },
-    },
-];
-
-const sassStyles = cssStyles.concat([
-    {
-        loader: 'sass-loader',
-        options: {
-            sourceMap: true,
-            sourceComments: true,
-        },
-    },
-]);
-
 module.exports = (env, options) => {
     let DEV = options.mode === 'development';
     let entry = {entry: path.resolve(__dirname, './src')};
     let output, devTools, devServer,
         moduleRulesUseCss, moduleRulesUseSass,
         optimization;
+
+    const cssStyles = [
+        {
+            loader: 'css-loader',
+            options: {
+                sourceMap: true,
+                sourceComments: true,
+                importLoaders: 1,
+            },
+        }, {
+            loader: 'postcss-loader',
+            options: {
+                plugins: [
+                    autoprefixerPlugin({
+                        browsers: ['> 1%', 'last 2 versions'],
+                    }),
+                ],
+            },
+        },
+    ];
+
+    const sassStyles = cssStyles.concat([
+        {
+            loader: 'sass-loader',
+            options: {
+                sourceMap: true,
+                sourceComments: true,
+            },
+        },
+    ]);
 
     if (DEV) {
         console.log('DEV MODE ON');
@@ -111,8 +111,7 @@ module.exports = (env, options) => {
             rules: [
                 {
                     test: /\.(ts|tsx)$/,
-                    use: 'awesome-typescript-loader',
-                    exclude: /node_modules/
+                    use: 'awesome-typescript-loader'
                 },
                 {
                     test: /\.(js|jsx)$/,
