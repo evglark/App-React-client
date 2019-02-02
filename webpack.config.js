@@ -1,7 +1,6 @@
 const path = require('path');
 const autoprefixerPlugin = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -48,14 +47,14 @@ module.exports = (env, options) => {
         output = {
             output: {
                 path: path.resolve(__dirname, './dist'),
-                publicPath: 'http://localhost:3001/',
+                publicPath: 'http://localhost:3002/',
                 filename: '[name].js'
             }
         };
         devTools = {devtool: 'source-map'};
         devServer = {
             devServer: {
-                port: 3001,
+                port: 3002,
                 overlay: true,
                 historyApiFallback: true,
             }
@@ -80,11 +79,6 @@ module.exports = (env, options) => {
         optimization = {
             optimization: {
                 minimizer: [
-                    new UglifyJsPlugin({
-                        cache: true,
-                        parallel: true,
-                        sourceMap: false,
-                    }),
                     new MiniCssExtractPlugin({
                         filename: './style/[name].css',
                         chunkFileName: './style/[id].css',
@@ -105,7 +99,7 @@ module.exports = (env, options) => {
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx'],
-            modules: ['node_modules', path.resolve(__dirname, '../src')]
+            modules: ['node_modules', path.resolve(__dirname, './src')]
         },
         module: {
             rules: [
