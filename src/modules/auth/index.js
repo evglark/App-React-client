@@ -1,5 +1,7 @@
 import components from './components'
 import store from './store'
 
-export const Components = components
-export const Store = store
+const Components = components
+const Store = store
+
+export default {Components, Store}

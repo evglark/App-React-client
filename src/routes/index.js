@@ -1,10 +1,17 @@
 import React from 'react'
+import routerComponent from './routerComponent'
+
+import Auth from 'modules/auth'
 
 export default () => ([
     {
         path: '/',
         exact: true,
-        component: () => <h1>2</h1>
+        component: routerComponent({
+            Public: true,
+            AsyncReducer: false,
+            MainComponent: Auth.Components.AuthForm
+        })
     }, {
         path: '/sign-in',
         exact: true,
