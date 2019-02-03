@@ -1,4 +1,4 @@
-import createReducer from '../../../services/createReducer'
+import createReducer from 'services/createReducer'
 
 export default createReducer({
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,

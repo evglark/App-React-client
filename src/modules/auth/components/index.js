@@ -1,3 +1,4 @@
 import AuthForm from './AuthForm'
+import AuthTwoo from './AuthTwoo'
 
-export default { AuthForm }
+export default { AuthForm, AuthTwoo }

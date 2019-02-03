@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 
 import createStore from './store'
-import routers from './routes'
+import routers from './router'
 import App from './App'
 import './style.scss'
 

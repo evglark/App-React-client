@@ -8,7 +8,7 @@ export const asyncReducer = ({store, reducerName, asyncReducer}) => {
 
     store.replaceReducer(reducer)
 }
-
+// createReducers(asyncReducers: any): Reducer<{}, AnyAction>
 export default (initialState = {}) => {
     const reducers = createReducers();
     const store = createStore(reducers, initialState);

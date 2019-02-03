@@ -1,25 +1,23 @@
 import React, { Component } from 'react'
 import {asyncReducer} from '../store';
 
-
-interface IReactComponent {
+export interface IReactComponent {
     Public: boolean;
-    AsyncReducer: IAsyncReducer;
+    AsyncReducer: IAsyncReducer | boolean;
     MainComponent: JSX.Element;
-
     history: {push(url: string): void};
 }
 
 interface IAsyncReducer {
-    store: {(store: {}): {}},
-    name: string,
-    moduleStore: {(store: {}): {}},
+    store: any;
+    name: string;
+    moduleStore: {(store: {}): {}};
 }
 
-export default ({ Public, AsyncReducer, MainComponent }) => (
-    class AsyncComponent extends Component<IReactComponent> {
+export default ({Public, AsyncReducer, MainComponent}): any => (
+    class RotreComponent extends Component<IReactComponent> {
         static Component = null
-        state = {Component: AsyncComponent.Component}
+        state = {Component: RotreComponent.Component}
 
         componentWillMount() {
             if(!this.state.Component) {
