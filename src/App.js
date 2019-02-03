@@ -7,9 +7,7 @@ import {Layouts} from './components/layouts'
 const App = ({router}) => {
     return (
         <BrowserRouter basename='/'>
-            <Layouts>
-                {renderRoutes(router)}
-            </Layouts>
+            <Layouts children={renderRoutes(router)} />
         </BrowserRouter>
     )
 }

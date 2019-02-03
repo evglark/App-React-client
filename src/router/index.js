@@ -1,14 +1,9 @@
 import routerComponent, {IReactComponent} from './routerComponent'
 
 import Auth from 'modules/auth'
+import Posts from 'modules/posts'
 
-interface IRouter {
-    path: string;
-    exact?: boolean;
-    component: {(Params: IReactComponent): JSX.Element} | JSX.Element;
-}
-
-export default (store): IRouter[] => (
+export default (store) => (
     [{
         path: '/',
         exact: true,
@@ -19,15 +14,15 @@ export default (store): IRouter[] => (
         })
     },
     {
-        path: '/twoo',
+        path: '/posts',
         component: routerComponent({
             Public: true,
             AsyncReducer: {
                 store: store,
-                name: 'posts',
-                moduleStore: {li: 1, lit: 2, lib: 3}
+                reducerName: 'postsReducer',
+                asyncReducer: Posts.Store,
             },
-            MainComponent: Auth.Components.AuthTwoo
+            MainComponent: Posts.Components.PostList
         })
     }]
 )

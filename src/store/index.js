@@ -17,15 +17,11 @@ export default (initialState = {}) => {
 }
 
 export const injectAsyncReducer = (store, reducerName, asyncReducer) => {
-    if (Object.hasOwnProperty.call(store.asyncReducers, reducerName)) {
-        if (!store.asyncReducers[reducerName]) {
-            console.log(`[IAR] reducer with name "${reducerName}" already in use`)
-        }
-        return null
+    if (!store.asyncReducers[reducerName]) {
+        console.log(`[IAR] reducer with name "${reducerName}" already in use`)
     }
 
-    store.asyncReducers[reducerName] = asyncReducer
-
-    const reducer = createReducers(store.asyncReducers)
-    store.replaceReducer(reducer)
+    store.asyncReducers[reducerName] = asyncReducer;
+    const reducer = createReducers(store.asyncReducers);
+    store.replaceReducer(reducer);
 }

@@ -10,8 +10,8 @@ export class Layouts extends Component<IProps> {
         return (
             <div className="wrap">
                 <Link to='/'>Home</Link>
-                <Link to='/twoo'>Posts</Link>
-                <Link to='/twoo'>User</Link>
+                <Link to='/posts'>Posts</Link>
+                <Link to='/'>User</Link>
             </div>
         )
     }
