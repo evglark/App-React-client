@@ -48,7 +48,8 @@ module.exports = (env, options) => {
             output: {
                 path: path.resolve(__dirname, './dist'),
                 publicPath: 'http://localhost:3002/',
-                filename: '[name].js'
+                filename: '[name].js',
+                chunkFilename: '[name].js'
             }
         };
         devTools = {devtool: 'source-map'};
@@ -69,7 +70,7 @@ module.exports = (env, options) => {
             output: {
                 path: path.resolve(__dirname, './dist'),
                 filename: '[name].js',
-                chunkFilename: '[name].js',
+                chunkFilename: '[name].js'
             }
         };
         devTools = {devtool: false};
@@ -94,6 +95,7 @@ module.exports = (env, options) => {
         ...devTools,
         ...devServer,
         ...optimization,
+        performance: { hints: false },
         entry: {
             main: path.resolve(__dirname, './src')
         },

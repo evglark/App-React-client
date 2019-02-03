@@ -1,19 +1,31 @@
-import {createStore} from 'redux'
+import { createStore, compose } from 'redux'
 import createReducers from './reducers'
 
-export const asyncReducer = ({store, reducerName, asyncReducer}) => {
+let composeEnhancers = compose
+
+if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+}
+
+const enhancer = composeEnhancers();
+
+export default (initialState = {}) => {
+    const store = createStore(createReducers(), initialState, enhancer)
+
+    store.asyncReducers = {}
+    return store
+}
+
+export const injectAsyncReducer = (store, reducerName, asyncReducer) => {
+    if (Object.hasOwnProperty.call(store.asyncReducers, reducerName)) {
+        if (!store.asyncReducers[reducerName]) {
+            console.log(`[IAR] reducer with name "${reducerName}" already in use`)
+        }
+        return null
+    }
+
     store.asyncReducers[reducerName] = asyncReducer
 
     const reducer = createReducers(store.asyncReducers)
-
     store.replaceReducer(reducer)
-}
-// createReducers(asyncReducers: any): Reducer<{}, AnyAction>
-export default (initialState = {}) => {
-    const reducers = createReducers();
-    const store = createStore(reducers, initialState);
-
-    store.asyncReducers = {};
-
-    return store
 }
