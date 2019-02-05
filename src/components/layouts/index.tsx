@@ -5,17 +5,48 @@ interface IProps {
     children: JSX.Element;
 }
 
+interface INabBar {
+    to: string;
+    name: string;
+}
+const NavBar: INabBar[] = [
+    {
+        to: "/",
+        name: "Home"
+    }, {
+        to: "/posts",
+        name: "Posts"
+    }, {
+        to: "/",
+        name: "Som"
+    }
+]
+
 export class Layouts extends Component<IProps> {
+    protected renderNavBar(): JSX.Element {
+        return (
+            <div className="navbar">
+                <ul className="navbar-nav">
+                    {
+                        NavBar && // active
+                        NavBar.map(item => (
+                            <li className="nav-item">
+                                <Link to={item.to} class="nav-link">{item.name}</Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        )
+    }
+
     protected renderHeader(): JSX.Element {
         return (
             <div className="wrap">
-                <div className="preview"><h1>Hello World!!!</h1></div>
-
-                <div className="nav-bar">
-                    <Link to="/">Home</Link>
-                    <Link to="/posts">Posts</Link>
-                    <Link to="/">User</Link>
+                <div className="preview">
+                    <h1>Hello World!!!</h1>
                 </div>
+                {this.renderNavBar()}
             </div>
         );
     }
