@@ -111,7 +111,7 @@ module.exports = (env, options) => {
                 },
                 {
                     test: /\.(js|jsx)$/,
-                    use: ['babel-loader', 'eslint-loader'],
+                    use: ['babel-loader'],
                     exclude: /node_modules/
                 },
                 {

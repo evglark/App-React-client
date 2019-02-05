@@ -1,5 +1,4 @@
-import routerComponent, {IReactComponent} from './routerComponent'
-
+import routerComponent from './routerComponent'
 import Auth from 'modules/auth'
 import Posts from 'modules/posts'
 

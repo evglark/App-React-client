@@ -1,4 +1,4 @@
-import createReducer from 'services/createReducer'
+import createReducer from 'utils/createReducer'
 
 const initState = {
     data: [],
@@ -14,4 +14,4 @@ const actionHandlers = {
     // [action.FAIL]: (state, { payload }) => ({...state}),
 }
 
-export default createReducer(initState, actionHandlers)
+export const postsReducer = createReducer(initState, actionHandlers);

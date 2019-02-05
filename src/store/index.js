@@ -1,5 +1,5 @@
-import { createStore, compose } from 'redux'
-import createReducers from './reducers'
+import {createStore, compose} from 'redux'
+import {createReducers} from './reducers'
 
 let composeEnhancers = compose
 

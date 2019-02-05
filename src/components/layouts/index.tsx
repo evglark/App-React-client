@@ -1,26 +1,32 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, {Component, Fragment} from 'react'
+import {Link} from 'react-router-dom'
 
 interface IProps {
-    children: JSX.Element
+    children: JSX.Element;
 }
 
 export class Layouts extends Component<IProps> {
-    renderHeader() {
+    protected renderHeader(): JSX.Element {
         return (
             <div className="wrap">
-                <Link to='/'>Home</Link>
-                <Link to='/posts'>Posts</Link>
-                <Link to='/'>User</Link>
+                <div className="preview"><h1>Hello World!!!</h1></div>
+
+                <div className="nav-bar">
+                    <Link to="/">Home</Link>
+                    <Link to="/posts">Posts</Link>
+                    <Link to="/">User</Link>
+                </div>
             </div>
-        )
+        );
     }
 
-    renderTabbar() {
-        return <div className="Container"></div>
+    protected renderTabbar(): JSX.Element {
+        return (
+            <div className="Container">1</div>
+        );
     }
 
-    render() {
+    public render(): JSX.Element {
         return (
             <Fragment>
                 {this.renderHeader()}
@@ -31,6 +37,6 @@ export class Layouts extends Component<IProps> {
                 </div>
                 {this.renderTabbar()}
             </Fragment>
-        )
+        );
     }
 }

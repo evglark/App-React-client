@@ -1,34 +1,37 @@
 .wrap {
+    width: 100%;
+    height: 150px;
     position: fixed;
     top: 0;
-    width: 100%;
-    height: 45px;
-    z-index: 100;
+    z-index: 1;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    padding: 0 20px;
     box-sizing: border-box;
+    border-bottom: 1px solid $blue;
+    color: black;
 
-    background-color: $blue;
+    .preview {
+        height: 120px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
 
-    a {
-        color: black;
+        font-family: initial;
     }
 }
 
 .styled-body {
-    padding-top: 66px;
-    padding-bottom: 160px;
-}
+    padding-top: 160px;
+    padding-bottom: 50px;
 
-.styled-wrap {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 550px;
-    padding: 0 16px;
-    
-    box-sizing: border-box;
+    .styled-wrap {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 900px;
+        padding: 0 16px;
+        
+        box-sizing: border-box;
+    }
 }
 
 .container {

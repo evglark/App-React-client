@@ -26,7 +26,8 @@ export default ({Public, AsyncReducer, MainComponent}) => (
                 // [true] передеть в State MainComponent
                 // [else] иначе редирект на логин
                 if(Public || localStorage.getItem('AuthToken')) {
-                    this.setState({Component: MainComponent});// [true]
+                    // Component проходит проверку, и готовится к рендерингу
+                    this.setState({Component: MainComponent});
 
                     // AsyncReducer:
                     // если AsyncReducer не false, значит нужно добавить редюсер асинхронно, для этого:
@@ -35,7 +36,9 @@ export default ({Public, AsyncReducer, MainComponent}) => (
                         const {store, reducerName, asyncReducer} = AsyncReducer;
                         injectAsyncReducer(store, reducerName, asyncReducer);
                     }
-                } else this.props.history.push('/sign-in');// [else]
+                } else {
+                    this.props.history.push('/sign-in');
+                }
             }
         }
 

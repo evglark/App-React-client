@@ -1,4 +1,4 @@
-import createReducer from 'services/createReducer'
+import createReducer from 'utils/createReducer'
 
 const initState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
@@ -13,4 +13,4 @@ const actionHandlers = {
     // [action.FAIL]: (state, { payload }) => ({...state}),
 }
 
-export default createReducer(initState, actionHandlers)
+export const authReducer = createReducer(initState, actionHandlers);
