@@ -1,4 +1,4 @@
-import createReducer from 'utils/createReducer'
+import createReducer from 'store/createReducer'
 
 const initState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,

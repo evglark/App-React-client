@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {Link} from 'react-router-dom'
+import {Houme} from 'components/icons'
 
 interface IProps {
     children: JSX.Element;
@@ -8,11 +9,13 @@ interface IProps {
 interface INabBar {
     path: string;
     name: string;
+    icon?: JSX.Element;
 }
 const NavBar: INabBar[] = [
     {
         path: "/",
-        name: "Home"
+        name: "Home",
+        icon: <Houme width='45px'/>
     },
     { 
         path: "/posts",
@@ -24,38 +27,38 @@ const NavBar: INabBar[] = [
     }
 ]
 
-export class Layouts extends Component<IProps> {
-    protected renderNavBar(): JSX.Element {
-        return (
-            <div className="navbar">
-                <ul className="navbar-nav">
-                    {
-                        NavBar && // active
-                        NavBar.map(item => (
-                            <li className="nav-item" key={`key-navbar-${item.name.toLowerCase()}`}>
-                                <Link to={item.path} className="nav-link">{item.name}</Link>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        )
-    }
-
+export class Layouts extends Component<IProps, {}> {
     protected renderHeader(): JSX.Element {
         return (
-            <div className="wrap">
-                <div className="preview">
-                    <h1>Hello World!!!</h1>
+            <div className="layout-header">
+                <div className="layout-title">
+                    <h1 className="layout-title-text">Hello World!!!</h1>
                 </div>
-                {this.renderNavBar()}
+                <div className="layout-navbar">
+                    <ul className="ul-navbar-menu">
+                        {
+                            NavBar && // active
+                            NavBar.map(item => (
+                                <li className="li-navbar-item" key={`key-navbar-${item.name.toLowerCase()}`}>
+                                    {item.icon}
+                                    <Link
+                                        to={item.path}
+                                        className="a-navbar-link"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </div>
         );
     }
 
     protected renderTabbar(): JSX.Element {
         return (
-            <div className="Container">1</div>
+            <div className="layout-tabbar">1</div>
         );
     }
 

@@ -1,9 +1,19 @@
-import routerComponent from './routerComponent'
+import routerComponent, {IPropsHOF} from './routerComponent'
 import Auth from 'modules/auth'
 import Posts from 'modules/posts'
 
-export default (store) => (
-    [{
+/**
+ * @prop {string} path.
+ * @props {boolean} [exact].
+ * @props {Function} component.
+ */
+interface IRouter {
+    path: string;
+    exact?: boolean;
+    component: Function;
+}
+export default (store): IRouter[] => {
+    return [{
         path: '/',
         exact: true,
         component: routerComponent({
@@ -11,13 +21,12 @@ export default (store) => (
             AsyncReducer: false,
             MainComponent: Auth.Components.AuthForm
         })
-    },
-    {
+    }, {
         path: '/posts',
         component: routerComponent({
             Public: true,
             AsyncReducer: {asyncReducer: Posts.Store, reducerName: 'postsReducer', store: store},
             MainComponent: Posts.Components.PostList
         })
-    }]
-)
+    }];
+}

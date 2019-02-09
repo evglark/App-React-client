@@ -15,4 +15,3 @@ export default (initialState = {}) => {
     store.asyncReducers = {}
     return store
 }
-

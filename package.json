@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "react": "^16.7.0",
+    "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router-config": "^4.4.0-beta.6",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {injectAsyncReducer} from 'store/injectAsyncR'
+import {injectAsyncReducer} from 'store/asyncReducer'
 
 /**
  * @props {Function} hispory глобальная пропса
@@ -22,7 +22,7 @@ interface IStateHOC {
  * @props {any} AsyncReducer false если асинхронное подключение редюсера не нужно или обьект подлючаемого редюсера.
  * @props {JSX.Element} MainComponent сам компонент.
  */
-interface IPropsHOF {
+export interface IPropsHOF {
     Public: boolean;
     AsyncReducer: any;
     MainComponent: JSX.Element;

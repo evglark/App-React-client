@@ -1,5 +1,5 @@
 export default (initialState = {}, actionHandlers = {}) => {
-    return (state = initialState, action) => {
+    return (state: any = initialState, action: any) => {
         const handler = actionHandlers[action.type]
 
         return handler ? handler(state, action) : state
