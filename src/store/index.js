@@ -16,12 +16,3 @@ export default (initialState = {}) => {
     return store
 }
 
-export const injectAsyncReducer = (store, reducerName, asyncReducer) => {
-    if (!store.asyncReducers[reducerName]) {
-        console.log(`[IAR] reducer with name "${reducerName}" already in use`)
-    }
-
-    store.asyncReducers[reducerName] = asyncReducer;
-    const reducer = createReducers(store.asyncReducers);
-    store.replaceReducer(reducer);
-}

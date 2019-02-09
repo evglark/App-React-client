@@ -14,4 +14,4 @@ const actionHandlers = {
     // [action.FAIL]: (state, { payload }) => ({...state}),
 }
 
-export const postsReducer = createReducer(initState, actionHandlers);
+export default createReducer(initState, actionHandlers);

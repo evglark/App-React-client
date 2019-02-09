@@ -16,11 +16,7 @@ export default (store) => (
         path: '/posts',
         component: routerComponent({
             Public: true,
-            AsyncReducer: {
-                store: store,
-                reducerName: 'postsReducer',
-                asyncReducer: Posts.Store,
-            },
+            AsyncReducer: {asyncReducer: Posts.Store, reducerName: 'postsReducer', store: store},
             MainComponent: Posts.Components.PostList
         })
     }]

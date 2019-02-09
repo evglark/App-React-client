@@ -13,4 +13,4 @@ const actionHandlers = {
     // [action.FAIL]: (state, { payload }) => ({...state}),
 }
 
-export const authReducer = createReducer(initState, actionHandlers);
+export default createReducer(initState, actionHandlers);

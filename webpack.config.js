@@ -47,7 +47,7 @@ module.exports = (env, options) => {
         output = {
             output: {
                 path: path.resolve(__dirname, './dist'),
-                publicPath: 'http://localhost:3002/',
+                publicPath: 'http://localhost:3031/',
                 filename: '[name].js',
                 chunkFilename: '[name].js'
             }
@@ -55,7 +55,7 @@ module.exports = (env, options) => {
         devTools = {devtool: 'source-map'};
         devServer = {
             devServer: {
-                port: 3002,
+                port: 3031,
                 overlay: true,
                 historyApiFallback: true,
             }

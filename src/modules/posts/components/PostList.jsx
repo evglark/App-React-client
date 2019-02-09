@@ -12,7 +12,11 @@ class AuthForm extends React.Component {
     render() {
         return (
             <div>
-                {posts.map((item, i) => <div key={item+'-'+i}>{this.renderPost()}</div>)}
+                {posts.map(item => (
+                    <div key={`key-posts-${item}`}>
+                        {this.renderPost()}
+                    </div>)
+                )}
             </div>
         )
     }

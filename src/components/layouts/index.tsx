@@ -6,18 +6,20 @@ interface IProps {
 }
 
 interface INabBar {
-    to: string;
+    path: string;
     name: string;
 }
 const NavBar: INabBar[] = [
     {
-        to: "/",
+        path: "/",
         name: "Home"
-    }, {
-        to: "/posts",
+    },
+    { 
+        path: "/posts",
         name: "Posts"
-    }, {
-        to: "/",
+    },
+    { 
+        path: "/", 
         name: "Som"
     }
 ]
@@ -30,8 +32,8 @@ export class Layouts extends Component<IProps> {
                     {
                         NavBar && // active
                         NavBar.map(item => (
-                            <li className="nav-item">
-                                <Link to={item.to} class="nav-link">{item.name}</Link>
+                            <li className="nav-item" key={`key-navbar-${item.name.toLowerCase()}`}>
+                                <Link to={item.path} className="nav-link">{item.name}</Link>
                             </li>
                         ))
                     }
