@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {Link} from 'react-router-dom'
-import {Houme} from 'components/icons'
+import {Home, Cityscape, Iceberg} from 'components/icons'
 
 interface IProps {
     children: JSX.Element;
@@ -15,22 +15,24 @@ const NavBar: INabBar[] = [
     {
         path: "/",
         name: "Home",
-        icon: <Houme width='45px'/>
+        icon: <Home />
     },
     { 
         path: "/posts",
-        name: "Posts"
+        name: "Posts",
+        icon: <Cityscape />
     },
     { 
         path: "/", 
-        name: "Som"
+        name: "Som",
+        icon: <Iceberg />
     }
 ]
 
 export class Layouts extends Component<IProps, {}> {
     protected renderHeader(): JSX.Element {
         return (
-            <div className="layout-header">
+            <div className="layout-header col-xs-12">
                 <div className="layout-title">
                     <h1 className="layout-title-text">Hello World!!!</h1>
                 </div>
@@ -40,12 +42,9 @@ export class Layouts extends Component<IProps, {}> {
                             NavBar && // active
                             NavBar.map(item => (
                                 <li className="li-navbar-item" key={`key-navbar-${item.name.toLowerCase()}`}>
-                                    {item.icon}
-                                    <Link
-                                        to={item.path}
-                                        className="a-navbar-link"
-                                    >
-                                        {item.name}
+                                    <Link to={item.path}>
+                                        <div className="img-navbar-link">{item.icon}</div>
+                                        <div className="a-navbar-link">{item.name}</div>
                                     </Link>
                                 </li>
                             ))
