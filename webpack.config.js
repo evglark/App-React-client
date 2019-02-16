@@ -41,9 +41,8 @@ module.exports = (env, options) => {
         },
     ]);
 
-    if (DEV) {
+    if(DEV) {
         console.log('DEV MODE ON');
-
         output = {
             output: {
                 path: path.resolve(__dirname, './dist'),
@@ -52,7 +51,9 @@ module.exports = (env, options) => {
                 chunkFilename: '[name].js'
             }
         };
-        devTools = {devtool: 'source-map'};
+        devTools = {
+            devtool: 'source-map'
+        };
         devServer = {
             devServer: {
                 port: 3031,
@@ -65,7 +66,6 @@ module.exports = (env, options) => {
         optimization = {optimization: {}};
     } else {
         console.log('PROD MODE ON');
-
         output = {
             output: {
                 path: path.resolve(__dirname, './dist'),

@@ -32,7 +32,7 @@ const NavBar: INabBar[] = [
 export class Layouts extends Component<IProps, {}> {
     protected renderHeader(): JSX.Element {
         return (
-            <div className="layout-header col-xs-12">
+            <div className="layout-header">
                 <div className="layout-title">
                     <h1 className="layout-title-text">Hello World!!!</h1>
                 </div>
@@ -62,15 +62,22 @@ export class Layouts extends Component<IProps, {}> {
     }
 
     public render(): JSX.Element {
+        let authToken: boolean = Boolean(localStorage.getItem('AuthToken'))
         return (
             <Fragment>
-                {this.renderHeader()}
+                {
+                    authToken &&
+                    this.renderHeader()
+                }
                 <div className="styled-body">
                     <div className="styled-wrap">
                         {this.props.children}
                     </div>
                 </div>
-                {this.renderTabbar()}
+                {
+                    authToken &&
+                    this.renderTabbar()
+                }
             </Fragment>
         );
     }
