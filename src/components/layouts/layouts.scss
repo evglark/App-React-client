@@ -1,50 +1,49 @@
-.layout-header {
+@import 'src/Components/variables.scss';
+
+.layout-topbar {
     width: 100%;
-    height: 199px;
-    padding: 0 20px;
+    height: $topbar-height;
     position: fixed;
     top: 0;
 
-    z-index: 1;
-    box-sizing: border-box;
-    border-bottom: 1px solid $gray-200;
-    background-color: $backgroundLayouts;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: $border-default;
+}
+
+.header {
+    height: $header-height;
+    margin-top: $topbar-height;
 
     .layout-title {
-        height: 130px;
+        height: $base*13;// 39px
         display: flex;
         flex-flow: column;
         justify-content: center;
         font-family: initial;
-
-        .layout-title-text {
-            font-weight: 600;
-        }
+        font-size: $heading;
+        font-weight: bold;
     }
 
     .layout-navbar {
         .ul-navbar-menu {
             margin: 0;
-            padding: 0;
-
+            padding: $base 0 0 0;
             display: flex;
             justify-content: flex-start;
-
             list-style: none;
+
             .li-navbar-item {
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
+                padding: 0 $base*5;
 
-                margin-right: 30px;
                 &:last-child { margin-right: 0 }
 
-                .img-navbar-link {
-                    width: 45px;
-                }
-
                 .a-navbar-link {
-                    font-weight: 500;
+                    text-align: center;
 
                     &:hover {
                         text-decoration: none;
@@ -56,29 +55,26 @@
 }
 
 .styled-body {
-    padding-top: calc(199px + 15px);
-    padding-bottom: 50px;
+    padding-top: calc($topbar-height + $header-height + $header-tabbar);
+    background-color: $background-body;
 
     .styled-wrap {
         width: 100%;
         margin: 0 auto;
-        max-width: 900px;
+        max-width: 50px;
         padding: 0 16px;
-        
         box-sizing: border-box;
     }
 }
 
 .layout-tabbar {
     width: 100%;
-    height: 45px;
+    height: $header-tabbar;// 45px
     position: fixed;
     bottom: 0;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
-
-    border-top: 1px solid $gray-200;
-    background-color: $backgroundLayouts;
+    border-top: $border-default;
 }

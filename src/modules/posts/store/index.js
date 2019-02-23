@@ -1,4 +1,4 @@
-import createReducer from 'store/createReducer'
+import {createReducer} from 'store/createReducer'
 
 const initState = {
     data: [],

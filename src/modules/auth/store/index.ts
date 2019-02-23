@@ -1,5 +1,5 @@
 import {RSAA} from 'redux-api-middleware'
-import createReducer from 'store/createReducer'
+import {createReducer} from 'store/createReducer'
 import createTypeRequest from 'helpers/createTypeRequest'
 
 const KEY: string = 'auth';
@@ -61,4 +61,4 @@ const actionHandlers = {
     })
 }
 
-export default createReducer(initState, actionHandlers);
+export const authR = createReducer(initState, actionHandlers);

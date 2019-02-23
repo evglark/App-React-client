@@ -1,46 +1,49 @@
 import React, {Component, Fragment} from 'react'
 import {Link} from 'react-router-dom'
+
 import {Home, Cityscape, Iceberg} from 'components/icons'
+import './layouts.scss'
+
 
 interface IProps {
     children: JSX.Element;
 }
 
-interface INabBar {
+interface IIconsNavBar {
     path: string;
     name: string;
     icon?: JSX.Element;
 }
-const NavBar: INabBar[] = [
-    {
-        path: "/",
-        name: "Home",
-        icon: <Home />
-    },
-    { 
-        path: "/posts",
-        name: "Posts",
-        icon: <Cityscape />
-    },
-    { 
-        path: "/", 
-        name: "Som",
-        icon: <Iceberg />
-    }
-]
 
-export class Layouts extends Component<IProps, {}> {
-    protected renderHeader(): JSX.Element {
+interface IState {
+    IconsNavBar: IIconsNavBar[]
+}
+
+export class Layouts extends Component<IProps, IState> {
+    state = {
+        IconsNavBar: [
+            {path: "/", name: "Home", icon: <Home />},
+            {path: "/posts", name: "Posts", icon: <Cityscape />},
+            {path: "/", name: "Som", icon: <Iceberg />}
+        ]
+    }
+
+    protected renderTopbar(): JSX.Element {
         return (
-            <div className="layout-header">
-                <div className="layout-title">
-                    <h1 className="layout-title-text">Hello World!!!</h1>
-                </div>
+            <div className="layout-topbar">1</div>
+        );
+    }
+
+    protected renderHeader(): JSX.Element {
+        const {IconsNavBar} = this.state
+        return (
+            <div className="header">
+                <div className="layout-title">Hello World!!!</div>
                 <div className="layout-navbar">
                     <ul className="ul-navbar-menu">
                         {
-                            NavBar && // active
-                            NavBar.map(item => (
+                            IconsNavBar &&
+                            IconsNavBar.map(item => (
                                 <li className="li-navbar-item" key={`key-navbar-${item.name.toLowerCase()}`}>
                                     <Link to={item.path}>
                                         <div className="img-navbar-link">{item.icon}</div>
@@ -65,17 +68,19 @@ export class Layouts extends Component<IProps, {}> {
         let authToken: boolean = Boolean(localStorage.getItem('AuthToken'))
         return (
             <Fragment>
-                {
-                    authToken &&
-                    this.renderHeader()
-                }
+                {!authToken && (
+                    <Fragment>
+                        {this.renderTopbar()}
+                        {this.renderHeader()}
+                    </Fragment>
+                )}
                 <div className="styled-body">
                     <div className="styled-wrap">
                         {this.props.children}
                     </div>
                 </div>
                 {
-                    authToken &&
+                    !authToken &&
                     this.renderTabbar()
                 }
             </Fragment>

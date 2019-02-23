@@ -1,4 +1,4 @@
-export default (initialState = {}, actionHandlers = {}) => {
+export const createReducer = (initialState = {}, actionHandlers = {}) => {
     return (state: any = initialState, action: any) => {
         const handler = actionHandlers[action.type]
 
