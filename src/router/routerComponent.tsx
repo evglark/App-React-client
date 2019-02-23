@@ -25,8 +25,9 @@ interface IStateHOC {
 export interface IPropsHOF {
     Public: boolean;
     AsyncReducer: any;
-    MainComponent: JSX.Element;
+    MainComponent: any;
 }
+
 export default ({Public, AsyncReducer, MainComponent}: IPropsHOF): any => {
     class RotreComponent extends Component <IPropsHOC, IStateHOC>{
         // Изначальное состояние

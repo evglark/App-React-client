@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
-import {authR as authReducers} from 'modules/auth/store'
+import {authStore as authReducers} from 'modules/auth/store'
 
 /**
  * @param asyncReducers modules/store/any
  */
-export const createReducers = (asyncReducers: any) => {
+export const createReducers = (asyncReducers) => {
     return combineReducers({
         authReducers,
         ...asyncReducers,

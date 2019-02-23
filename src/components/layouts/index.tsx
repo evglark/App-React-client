@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 
 import {Home, Cityscape, Iceberg} from 'components/icons'
@@ -19,7 +19,7 @@ interface IState {
     IconsNavBar: IIconsNavBar[]
 }
 
-export class Layouts extends Component<IProps, IState> {
+export class Layouts extends React.Component<IProps, IState> {
     state = {
         IconsNavBar: [
             {path: "/", name: "Home", icon: <Home />},
@@ -68,7 +68,7 @@ export class Layouts extends Component<IProps, IState> {
         let authToken: boolean = Boolean(localStorage.getItem('AuthToken'))
         return (
             <Fragment>
-                {!authToken && (
+                {authToken && (
                     <Fragment>
                         {this.renderTopbar()}
                         {this.renderHeader()}
@@ -80,7 +80,7 @@ export class Layouts extends Component<IProps, IState> {
                     </div>
                 </div>
                 {
-                    !authToken &&
+                    authToken &&
                     this.renderTabbar()
                 }
             </Fragment>

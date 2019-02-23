@@ -14,7 +14,7 @@ const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`)
  */
 interface IInitState {
     token: string;
-    user: any | {};
+    user: any;
     isLoading: boolean,
     error: any | {
         status: boolean,
@@ -22,6 +22,7 @@ interface IInitState {
         message: string
     };
 }
+
 const initState: IInitState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
     user: JSON.parse(localStorage.getItem('User')) || JSON.parse(sessionStorage.getItem('User')) || null,
@@ -61,4 +62,4 @@ const actionHandlers = {
     })
 }
 
-export const authR = createReducer(initState, actionHandlers);
+export const authStore = createReducer(initState, actionHandlers);

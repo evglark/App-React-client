@@ -1,5 +1,5 @@
 import routerComponent, {IPropsHOF} from './routerComponent'
-import Auth from 'modules/auth'
+import {authModele as Auth} from 'modules/auth'
 import Posts from 'modules/posts'
 
 /**
@@ -10,8 +10,9 @@ import Posts from 'modules/posts'
 interface IRouter {
     path: string;
     exact?: boolean;
-    component: Function;
+    component: IPropsHOF;
 }
+
 export default (store): IRouter[] => {
     return [{
         path: '/',

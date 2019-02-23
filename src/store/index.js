@@ -10,8 +10,8 @@ if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
 const enhancer = composeEnhancers();
 
 export default (initialState = {}) => {
-    const store = createStore(createReducers(), initialState, enhancer)
+    const store = createStore(createReducers(), initialState, enhancer);
 
-    store.asyncReducers = {}
+    store.asyncReducers = {};
     return store
 }
