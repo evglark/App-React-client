@@ -20,34 +20,42 @@ interface IState {
 }
 
 export class Layouts extends React.Component<IProps, IState> {
-    state = {
-        IconsNavBar: [
-            {path: "/", name: "Home", icon: <Home />},
-            {path: "/posts", name: "Posts", icon: <Cityscape />},
-            {path: "/", name: "Som", icon: <Iceberg />}
-        ]
-    }
+    state: IState = {
+        IconsNavBar: [{
+            path: "/",
+            name: "Home",
+            icon: <div/>
+        }, {
+            path: "/posts",
+            name: "Posts",
+            icon: <div/>
+        }, {
+            path: "/",
+            name: "Som",
+            icon: <div/>
+        }]
+    };
 
-    protected renderTopbar(): JSX.Element {
+    protected renderTopBar(): JSX.Element {
         return (
-            <div className="layout-topbar">1</div>
+            <div className="layout-topBar">1</div>
         );
     }
 
     protected renderHeader(): JSX.Element {
-        const {IconsNavBar} = this.state
+        const {IconsNavBar} = this.state;
         return (
             <div className="header">
                 <div className="layout-title">Hello World!!!</div>
-                <div className="layout-navbar">
-                    <ul className="ul-navbar-menu">
+                <div className="layout-navBar">
+                    <ul className="ul-navBar-menu">
                         {
                             IconsNavBar &&
                             IconsNavBar.map(item => (
-                                <li className="li-navbar-item" key={`key-navbar-${item.name.toLowerCase()}`}>
+                                <li className="li-navBar-item" key={`key-navBar-${item.name.toLowerCase()}`}>
                                     <Link to={item.path}>
-                                        <div className="img-navbar-link">{item.icon}</div>
-                                        <div className="a-navbar-link">{item.name}</div>
+                                        <div className="img-navBar-link">{item.icon}</div>
+                                        <div className="a-navBar-link">{item.name}</div>
                                     </Link>
                                 </li>
                             ))
@@ -58,19 +66,19 @@ export class Layouts extends React.Component<IProps, IState> {
         );
     }
 
-    protected renderTabbar(): JSX.Element {
+    protected renderTabBar(): JSX.Element {
         return (
-            <div className="layout-tabbar">1</div>
+            <div className="layout-tabBar">1</div>
         );
     }
 
     public render(): JSX.Element {
-        let authToken: boolean = Boolean(localStorage.getItem('AuthToken'))
+        let authToken: boolean = Boolean(localStorage.getItem('AuthToken'));
         return (
             <Fragment>
                 {authToken && (
                     <Fragment>
-                        {this.renderTopbar()}
+                        {this.renderTopBar()}
                         {this.renderHeader()}
                     </Fragment>
                 )}
@@ -81,7 +89,7 @@ export class Layouts extends React.Component<IProps, IState> {
                 </div>
                 {
                     authToken &&
-                    this.renderTabbar()
+                    this.renderTabBar()
                 }
             </Fragment>
         );

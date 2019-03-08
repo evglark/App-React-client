@@ -7,4 +7,4 @@ export const injectAsyncReducer = (asyncReducer: Function, reducerName: string, 
     store.asyncReducers[reducerName] = asyncReducer;
     const reducer = createReducers(store.asyncReducers);
     store.replaceReducer(reducer);
-}
+};

@@ -18,6 +18,6 @@ const renderApp = (Component) => {
         </Provider>,
         HTML_elem
     )
-}
+};
 
-renderApp(App)
+renderApp(App);

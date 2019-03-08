@@ -9,6 +9,6 @@ const App = ({router}) => {
             <Layouts children={renderRoutes(router)} />
         </BrowserRouter>
     )
-}
+};
 
 export default App

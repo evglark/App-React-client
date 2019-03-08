@@ -1,8 +1,8 @@
-@import 'src/Components/variables.scss';
+@import '../style/variables.scss';
 
-.layout-topbar {
+.layout-topBar {
     width: 100%;
-    height: $topbar-height;
+    height: $topBar-height;
     position: fixed;
     top: 0;
 
@@ -14,7 +14,7 @@
 
 .header {
     height: $header-height;
-    margin-top: $topbar-height;
+    margin-top: $topBar-height;
 
     .layout-title {
         height: $base*13;// 39px
@@ -26,15 +26,15 @@
         font-weight: bold;
     }
 
-    .layout-navbar {
-        .ul-navbar-menu {
+    .layout-navBar {
+        .ul-navBar-menu {
             margin: 0;
             padding: $base 0 0 0;
             display: flex;
             justify-content: flex-start;
             list-style: none;
 
-            .li-navbar-item {
+            .li-navBar-item {
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
@@ -42,7 +42,7 @@
 
                 &:last-child { margin-right: 0 }
 
-                .a-navbar-link {
+                .a-navBar-link {
                     text-align: center;
 
                     &:hover {
@@ -55,7 +55,7 @@
 }
 
 .styled-body {
-    padding-top: calc($topbar-height + $header-height + $header-tabbar);
+    padding-top: calc(#{$topBar-height} + #{$header-height} + #{$tabBar-height});
     background-color: $background-body;
 
     .styled-wrap {
@@ -67,9 +67,9 @@
     }
 }
 
-.layout-tabbar {
+.layout-tabBar {
     width: 100%;
-    height: $header-tabbar;// 45px
+    height: $tabBar-height;// 45px
     position: fixed;
     bottom: 0;
 

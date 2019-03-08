@@ -27,8 +27,9 @@ $background-body:     $gray-100;
 $heading:             3em;
 
 $base:                3px;
-$topbar-height:       $base*10;// 30px
-$header-height:       $base*37;// 111px
-$header-tabbar:       $base*15;// 45px
+
+$topBar-height:       $base*10;      // 30px
+$header-height:       $base*37;      // 111px
+$tabBar-height:       $base*15;      // 45px
 
 $border-default:     1px solid $gray-200;

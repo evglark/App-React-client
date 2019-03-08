@@ -28,13 +28,13 @@ export interface IPropsHOF {
     MainComponent: any;
 }
 
-export default ({Public, AsyncReducer, MainComponent}: IPropsHOF): any => {
-    class RotreComponent extends Component <IPropsHOC, IStateHOC>{
+export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF): any => {
+    class RouterComponent extends Component <IPropsHOC, IStateHOC>{
         // Изначальное состояние
-        static Component = null
+        static Component = null;
         state = {
-            Component: RotreComponent.Component
-        }
+            Component: RouterComponent.Component
+        };
 
         componentWillMount() {
             if(this.state.Component == null) {
@@ -59,12 +59,12 @@ export default ({Public, AsyncReducer, MainComponent}: IPropsHOF): any => {
         }
 
         render() {
-            const {Component} = this.state
-            let View = Component ? <Component {...this.props} /> : null
+            const {Component} = this.state;
+            let View = Component ? <Component {...this.props} /> : null;
 
             return View
         }
     }
 
-    return RotreComponent
-}
+    return RouterComponent
+};
