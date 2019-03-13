@@ -1,8 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
-
 import {Home, Cityscape, Iceberg} from 'components/icons'
-import './layouts.scss'
 
 
 interface IProps {
@@ -36,13 +34,13 @@ export class Layouts extends React.Component<IProps, IState> {
         }]
     };
 
-    protected renderTopBar(): JSX.Element {
+    private renderTopBar(): JSX.Element {
         return (
             <div className="layout-topBar">1</div>
         );
     }
 
-    protected renderHeader(): JSX.Element {
+    private renderHeader(): JSX.Element {
         const {IconsNavBar} = this.state;
         return (
             <div className="header">
@@ -66,7 +64,7 @@ export class Layouts extends React.Component<IProps, IState> {
         );
     }
 
-    protected renderTabBar(): JSX.Element {
+    private renderTabBar(): JSX.Element {
         return (
             <div className="layout-tabBar">1</div>
         );

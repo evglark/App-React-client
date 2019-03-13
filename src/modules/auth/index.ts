@@ -4,4 +4,4 @@ import {authStore} from './store'
 const Components = authComponents;
 const Store = authStore;
 
-export const authModele = {Components, Store}
+export const authModule = {Components, Store};

@@ -3,26 +3,35 @@ import {createReducer} from 'store/createReducer'
 import createTypeRequest from 'helpers/createTypeRequest'
 
 const KEY: string = 'auth';
-const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`)
+const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`);
 
 /**
  * Interface for InitState
- * @props {string} token записывается после авторизации и слижут инструментом аутентификации.
- * @props {string} user записывается после авторизации и является карент юзером.
- * @props {boolean} isLoading состояние запроса.
- * @props {any} error обьект ошибки, может быть пустым.
+ * @props {string} token Записывается после авторизации и слижут инструментом аутентификации.
+ * @props {string} user Записывается после авторизации и является карент юзером.
+ * @props {boolean} isLoading Состояние запроса.
+ * @props {any} error Обьект ошибки, может быть пустым.
  */
-interface IInitState {
+export interface IInitState {
     token: string;
     user: any;
     isLoading: boolean,
-    error: any | {
-        status: boolean,
-        code: number,
-        message: string
-    };
+    error: any | IError
 }
 
+/**
+ * Interface for IError
+ * @props {boolean} status Статус ошибки.
+ * @props {number} code Код запроса.
+ * @props {string} message Сообщение ошибки.
+ */
+interface IError {
+    status: boolean,
+    code: number,
+    message: string
+}
+
+// Init State
 const initState: IInitState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
     user: JSON.parse(localStorage.getItem('User')) || JSON.parse(sessionStorage.getItem('User')) || null,
@@ -31,7 +40,7 @@ const initState: IInitState = {
 };
 
 // Actions
-export const signIn = (login, password) => ({
+export const signIn = (login, password): any => ({
     [RSAA]: {
         method: 'POST',
         endpoint: 'http://localhost:4001/api/auth/sign-in',
@@ -39,19 +48,23 @@ export const signIn = (login, password) => ({
         body: `email=${login}&password=${password}`,
         types: AUTH_LOGIN.getValues(),
     }
-})
+});
 
-// ActionHandlers
+// Action Handlers
 const actionHandlers = {
-    [AUTH_LOGIN.REQUEST]: (state: IInitState): any => ({ ...state, isLoading: true, error: {} }),
-    [AUTH_LOGIN.SUCCESS]: (state: IInitState, { payload }): any => ({
+    [AUTH_LOGIN.REQUEST]: (state: IInitState): IInitState => ({
+        ...state,
+        isLoading: true,
+        error: {}
+    }),
+    [AUTH_LOGIN.SUCCESS]: (state: IInitState, { payload }): IInitState => ({
         ...state,
         token: payload.data.token,
         user: payload.data.user,
         isLoading: false,
         error: false
     }),
-    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): any => ({
+    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): IInitState => ({
         ...state,
         isLoading: false,
         error: {
@@ -60,6 +73,6 @@ const actionHandlers = {
             message: payload.response.message
         }
     })
-}
+};
 
 export const authStore = createReducer(initState, actionHandlers);

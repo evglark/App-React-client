@@ -1,5 +1,5 @@
 import {routerComponent, IPropsHOF} from './routerComponent'
-import {authModele as Auth} from 'modules/auth'
+import {authModule as Auth} from 'modules/auth'
 import Posts from 'modules/posts'
 
 /**
