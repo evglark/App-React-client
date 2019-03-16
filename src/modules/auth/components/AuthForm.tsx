@@ -1,7 +1,7 @@
 import React from 'react'
-import connect from 'react-redux/es/connect/connect'
+import {connect} from 'react-redux'
 import * as _ from 'lodash'
-import { signIn } from '../store'
+import {IInitState, signIn} from '../store'
 
 /**
  * Interface for IError
@@ -9,10 +9,9 @@ import { signIn } from '../store'
  * @props {token} token Код запроса.
  * @props {history} history Сообщение ошибки.
  */
-interface Props {
-    user: any;
-    token: any;
+interface Props extends IInitState {
     history: any;
+    signIn: (email: string, password: string) => void;
 }
 
 /**
@@ -34,24 +33,30 @@ class __AuthForm extends React.Component<Props, State> {
         rememberPass: true
     };
 
-    private setEmail = (e): void => {
+    private setEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
         this.setState({email: e.target.value});
     };
 
-    private setPassword = (e) => {
+    private setPassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
         this.setState({password: e.target.value});
     };
 
-    private setRememberPass = () => {
+    private setRememberPass = (): void => {
         this.setState({rememberPass: !this.state.rememberPass});
     };
 
-    private addDataToLocalStorage(authToken: string, user: any): void {
+    private addDataToLocalStorage = (authToken: string, user: any): void => {
         localStorage.setItem('AuthToken', authToken);
         localStorage.setItem('User', JSON.stringify(user));
     };
 
-    private addDataToSessionStorage(authToken: string, user: any): void {
+    private handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        console.log(this.state.email, this.state.password);
+        this.props.signIn(this.state.email, this.state.password);
+    };
+
+    private addDataToSessionStorage = (authToken: string, user: any): void => {
         sessionStorage.setItem('AuthToken', authToken);
         sessionStorage.setItem('User', JSON.stringify(user));
     };
@@ -66,32 +71,51 @@ class __AuthForm extends React.Component<Props, State> {
     };
 
     public render(): JSX.Element {
-        const {email, password, rememberPass} = this.state;
         return (
             <div>
-                {/* Login Form */}
-                <form onSubmit={this.props.signIn(this.state.email, this.state.password)}>
-                    <input type="text" name="login" value={email} onChange={(e) => this.setEmail(e)} placeholder="login"/>
-                    <br />
-                    <input type="text" name="login" value={password} onChange={(e) => this.setPassword(e)} placeholder="password" />
-                    <br />
-                    <input type='checkbox' name='checkForRemember' checked={rememberPass} onChange={this.setRememberPass} />
+                <form onSubmit={this.handleSubmit}>
+                    <input
+                        type="text"
+                        name="login"
+                        value={this.state.email}
+                        onChange={this.setEmail}
+                        placeholder="login"
+                    /><br />
+
+                    <input
+                        type="text"
+                        name="login"
+                        value={this.state.password}
+                        onChange={this.setPassword}
+                        placeholder="password"
+                    /><br />
+
+                    <input
+                        type='checkbox'
+                        name='checkForRemember'
+                        checked={this.state.rememberPass}
+                        onChange={this.setRememberPass}
+                    />
                     <label htmlFor='checkForRemember'>Remember my password</label>
                     <br />
-                    <input type="submit" className="fadeIn fourth" value="Log In" />
+
+                    <input
+                        type="submit"
+                        className="fadeIn fourth"
+                        value="Log In"
+                    />
                 </form>
             </div>
         )
     }
 }
 
-const mapState = ({ auth }) => auth;
+const mapState = (props) => props.authReducers;
 
 const mapDispatch = dispatch => ({
-    signIn: (email, password) => e => {
-        e.preventDefault();
+    signIn: (email, password) => () => {
         dispatch(signIn(email, password))
     }
 });
 
-export default connect(mapState, mapDispatch)(__AuthForm);
+export const AuthForm = connect(mapState, mapDispatch)(__AuthForm);

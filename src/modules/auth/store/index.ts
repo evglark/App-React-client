@@ -40,12 +40,12 @@ const initState: IInitState = {
 };
 
 // Actions
-export const signIn = (login, password): any => ({
+export const signIn = (email: string, password: string): any => ({
     [RSAA]: {
         method: 'POST',
         endpoint: 'http://localhost:4001/api/auth/sign-in',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `email=${login}&password=${password}`,
+        body: `email=${email}&password=${password}`,
         types: AUTH_LOGIN.getValues(),
     }
 });
