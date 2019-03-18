@@ -16,4 +16,4 @@ class ActionTypes {
     }
 }
 
-export default base => new ActionTypes(base)
+export const createTypeRequest = (base) => new ActionTypes(base);

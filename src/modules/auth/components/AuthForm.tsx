@@ -1,17 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import * as _ from 'lodash'
-import {IInitState, signIn} from '../store'
+import {IInitState} from '../store'
+import {IAuthActions, signIn} from '../store/actions'
 
 /**
  * Interface for IError
- * @props {user} user Статус ошибки.
- * @props {token} token Код запроса.
  * @props {history} history Сообщение ошибки.
  */
-interface Props extends IInitState {
+interface IProps {
     history: any;
-    signIn: (email: string, password: string) => void;
 }
 
 /**
@@ -20,14 +18,16 @@ interface Props extends IInitState {
  * @props {string} password Поле - пароль пользователя.
  * @props {boolean} rememberPass Чекбокс - запомнить пароль.
  */
-interface State {
+interface IState {
     email: string;
     password: string;
     rememberPass: boolean;
 }
 
-class __AuthForm extends React.Component<Props, State> {
-    public state: State = {
+interface IAuthFormProps extends IProps, IInitState, IAuthActions {}
+
+class __AuthForm extends React.Component<IAuthFormProps, IState> {
+    public state: IState = {
         email: '',
         password: '',
         rememberPass: true
@@ -51,9 +51,10 @@ class __AuthForm extends React.Component<Props, State> {
     };
 
     private handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        const {email, password} = this.state;
         e.preventDefault();
-        console.log(this.state.email, this.state.password);
-        this.props.signIn(this.state.email, this.state.password);
+
+        this.props.signIn(email, password);
     };
 
     private addDataToSessionStorage = (authToken: string, user: any): void => {
@@ -61,7 +62,7 @@ class __AuthForm extends React.Component<Props, State> {
         sessionStorage.setItem('User', JSON.stringify(user));
     };
 
-    public componentWillReceiveProps(nextProps: Props): void {
+    public componentWillReceiveProps(nextProps: IAuthFormProps): void {
         if (!_.equals(this.props.user, nextProps.user)) {
             if(this.state.rememberPass) {
                 this.addDataToLocalStorage(nextProps.token, nextProps.user);
@@ -73,7 +74,7 @@ class __AuthForm extends React.Component<Props, State> {
     public render(): JSX.Element {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form id='login-form' onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         name="login"
@@ -98,23 +99,19 @@ class __AuthForm extends React.Component<Props, State> {
                     />
                     <label htmlFor='checkForRemember'>Remember my password</label>
                     <br />
-
-                    <input
-                        type="submit"
-                        className="fadeIn fourth"
-                        value="Log In"
-                    />
                 </form>
+
+                <input value="Log In" type="submit" className="fadeIn fourth" form='login-form'/>
             </div>
         )
     }
 }
 
-const mapState = (props) => props.authReducers;
+const mapState = (props): IInitState => props.authReducers;
 
-const mapDispatch = dispatch => ({
-    signIn: (email, password) => () => {
-        dispatch(signIn(email, password))
+const mapDispatch = (dispatch): IAuthActions => ({
+    signIn: (email: string, password: string) => {
+        dispatch(signIn(email, password));
     }
 });
 

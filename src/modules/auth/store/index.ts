@@ -1,9 +1,8 @@
-import {RSAA} from 'redux-api-middleware'
-import {createReducer} from 'store/createReducer'
 import createTypeRequest from 'helpers/createTypeRequest'
+import {createReducer} from 'store/createReducer'
 
-const KEY: string = 'auth';
-const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`);
+export const KEY: string = 'auth';
+export const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`);
 
 /**
  * Interface for InitState
@@ -32,26 +31,15 @@ interface IError {
 }
 
 // Init State
-const initState: IInitState = {
+export const initState: IInitState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
     user: JSON.parse(localStorage.getItem('User')) || JSON.parse(sessionStorage.getItem('User')) || null,
     isLoading: false,
     error: {}
 };
 
-// Actions
-export const signIn = (email: string, password: string): any => ({
-    [RSAA]: {
-        method: 'POST',
-        endpoint: 'http://localhost:4001/api/auth/sign-in',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `email=${email}&password=${password}`,
-        types: AUTH_LOGIN.getValues(),
-    }
-});
-
 // Action Handlers
-const actionHandlers = {
+export const actionHandlers = {
     [AUTH_LOGIN.REQUEST]: (state: IInitState): IInitState => ({
         ...state,
         isLoading: true,
