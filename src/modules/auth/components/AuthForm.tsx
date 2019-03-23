@@ -10,6 +10,7 @@ import {IAuthActions, signIn} from '../store/actions'
  */
 interface IProps {
     history: any;
+    location: any;
 }
 
 /**
@@ -24,7 +25,7 @@ interface IState {
     rememberPass: boolean;
 }
 
-interface IAuthFormProps extends IProps, IInitState, IAuthActions {}
+type IAuthFormProps = IProps & IInitState & IAuthActions;
 
 class __AuthForm extends React.Component<IAuthFormProps, IState> {
     public state: IState = {
@@ -50,6 +51,11 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
         localStorage.setItem('User', JSON.stringify(user));
     };
 
+    private addDataToSessionStorage = (authToken: string, user: any): void => {
+        sessionStorage.setItem('AuthToken', authToken);
+        sessionStorage.setItem('User', JSON.stringify(user));
+    };
+
     private handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         const {email, password} = this.state;
         e.preventDefault();
@@ -57,13 +63,8 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
         this.props.signIn(email, password);
     };
 
-    private addDataToSessionStorage = (authToken: string, user: any): void => {
-        sessionStorage.setItem('AuthToken', authToken);
-        sessionStorage.setItem('User', JSON.stringify(user));
-    };
-
     public componentWillReceiveProps(nextProps: IAuthFormProps): void {
-        if (!_.equals(this.props.user, nextProps.user)) {
+        if (!(_.isEqual(this.props.user, nextProps.user))) {
             if(this.state.rememberPass) {
                 this.addDataToLocalStorage(nextProps.token, nextProps.user);
             } else this.addDataToSessionStorage(nextProps.token, nextProps.user);
@@ -107,7 +108,12 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
     }
 }
 
-const mapState = (props): IInitState => props.authReducers;
+const mapState = (state): IInitState => {
+    const {
+        authReducers: {token, user, isLoading, error}
+    } = state;
+    return ({token, user, isLoading, error});
+};
 
 const mapDispatch = (dispatch): IAuthActions => ({
     signIn: (email: string, password: string) => {

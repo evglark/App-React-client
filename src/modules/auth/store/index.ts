@@ -1,8 +1,5 @@
-import createTypeRequest from 'helpers/createTypeRequest'
 import {createReducer} from 'store/createReducer'
-
-export const KEY: string = 'auth';
-export const AUTH_LOGIN: any = createTypeRequest(`${KEY}-login`);
+import {AUTH_LOGIN} from './actions'
 
 /**
  * Interface for InitState
@@ -15,7 +12,7 @@ export interface IInitState {
     token: string;
     user: any;
     isLoading: boolean,
-    error: any | IError
+    error: IError
 }
 
 /**
@@ -35,7 +32,11 @@ export const initState: IInitState = {
     token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
     user: JSON.parse(localStorage.getItem('User')) || JSON.parse(sessionStorage.getItem('User')) || null,
     isLoading: false,
-    error: {}
+    error: {
+        status: null,
+        code: null,
+        message: null
+    }
 };
 
 // Action Handlers
@@ -43,24 +44,35 @@ export const actionHandlers = {
     [AUTH_LOGIN.REQUEST]: (state: IInitState): IInitState => ({
         ...state,
         isLoading: true,
-        error: {}
+        error: {
+            status: null,
+            code: null,
+            message: null
+        }
     }),
     [AUTH_LOGIN.SUCCESS]: (state: IInitState, { payload }): IInitState => ({
         ...state,
         token: payload.data.token,
         user: payload.data.user,
         isLoading: false,
-        error: false
-    }),
-    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): IInitState => ({
-        ...state,
-        isLoading: false,
         error: {
-            status: true,
-            code: payload.response.status,
-            message: payload.response.message
+            status: null,
+            code: null,
+            message: null
         }
-    })
+    }),
+    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): IInitState => {
+        console.log(payload);
+        return ({
+            ...state,
+            isLoading: false,
+            error: {
+                status: true,
+                code: payload.response.status,
+                message: payload.response.message
+            }
+        })
+    }
 };
 
 export const authStore = createReducer(initState, actionHandlers);

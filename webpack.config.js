@@ -6,10 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, options) => {
     let DEV = options.mode === 'development';
-    let entry = {entry: path.resolve(__dirname, './src')};
-    let output, devTools, devServer,
-        moduleRulesUseCss, moduleRulesUseSass,
-        optimization;
+    let webpackConfig, moduleRulesUseCss, moduleRulesUseSass;
 
     const cssStyles = [
         {
@@ -43,41 +40,34 @@ module.exports = (env, options) => {
 
     if(DEV) {
         console.log('DEV MODE ON');
-        output = {
+        moduleRulesUseCss = ['style-loader'].concat(cssStyles);
+        moduleRulesUseSass = ['style-loader'].concat(sassStyles);
+        webpackConfig = {
             output: {
                 path: path.resolve(__dirname, './dist'),
                 publicPath: 'http://localhost:3031/',
                 filename: '[name].js',
                 chunkFilename: '[name].js'
-            }
-        };
-        devTools = {
-            devtool: 'source-map'
-        };
-        devServer = {
+            },
+            devtool: 'source-map',
             devServer: {
                 port: 3031,
                 overlay: true,
                 historyApiFallback: true,
             }
         };
-        moduleRulesUseCss = ['style-loader'].concat(cssStyles);
-        moduleRulesUseSass = ['style-loader'].concat(sassStyles);
-        optimization = {optimization: {}};
     } else {
         console.log('PROD MODE ON');
-        output = {
+        moduleRulesUseCss = [MiniCssExtractPlugin.loader].concat(sassStyles);
+        moduleRulesUseSass = [MiniCssExtractPlugin.loader].concat(sassStyles);
+        webpackConfig = {
             output: {
                 path: path.resolve(__dirname, './dist'),
                 filename: '[name].js',
                 chunkFilename: '[name].js'
-            }
-        };
-        devTools = {devtool: false};
-        devServer = {devServer: {}};
-        moduleRulesUseCss = [MiniCssExtractPlugin.loader].concat(sassStyles);
-        moduleRulesUseSass = [MiniCssExtractPlugin.loader].concat(sassStyles);
-        optimization = {
+            },
+            devtool: false,
+            devServer: {},
             optimization: {
                 minimizer: [
                     new MiniCssExtractPlugin({
@@ -90,11 +80,7 @@ module.exports = (env, options) => {
     }
 
     return ({
-        ...entry,
-        ...output,
-        ...devTools,
-        ...devServer,
-        ...optimization,
+        ...webpackConfig,
         performance: { hints: false },
         entry: {
             main: path.resolve(__dirname, './src')
@@ -140,4 +126,4 @@ module.exports = (env, options) => {
             new HtmlWebpackPlugin({ template: './public/index.html', inject: false })
         ],
     });
-}
+};

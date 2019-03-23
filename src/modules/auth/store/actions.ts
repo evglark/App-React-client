@@ -1,8 +1,8 @@
 import {RSAA} from 'redux-api-middleware'
 import {createTypeRequest} from 'helpers/createTypeRequest'
 
-export const KEY: string = 'auth';
-export const AUTH_LOGIN = createTypeRequest(`${KEY}-login`);
+export const KEY: string = 'AUTH';
+export const AUTH_LOGIN = createTypeRequest(`${KEY}-LOGIN`);
 
 export interface IAuthActions {
     signIn: (email: string, password: string) => any;
