@@ -13,7 +13,7 @@ interface IRouter {
     component: IPropsHOF;
 }
 
-export default (store): IRouter[] => {
+export const routers = (store): IRouter[] => {
     return [{
         path: '/',
         exact: true,

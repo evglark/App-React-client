@@ -1,14 +1,14 @@
-import React from 'react'
+import * as React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 
-import createStore from 'store'
-import routers from 'router'
+import {create_Store} from 'store'
+import {routers} from 'router'
 import App from 'App'
 import 'style.scss'
 
 const HTML_elem = document.querySelector('#root');
-const store = createStore();
+const store = create_Store();
 const router = routers(store);
 
 const renderApp = (Component) => {
