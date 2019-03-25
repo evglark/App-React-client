@@ -10,7 +10,6 @@ import {IAuthActions, signIn} from '../store/actions'
  */
 interface IProps {
     history: any;
-    location: any;
 }
 
 /**
@@ -109,9 +108,7 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
 }
 
 const mapState = (state): IInitState => {
-    const {
-        authReducers: {token, user, isLoading, error}
-    } = state;
+    const {authReducers: {token, user, isLoading, error}} = state;
     return ({token, user, isLoading, error});
 };
 

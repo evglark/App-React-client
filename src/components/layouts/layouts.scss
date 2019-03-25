@@ -55,7 +55,7 @@
 }
 
 .styled-body {
-    padding-top: calc(#{$topBar-height} + #{$header-height} + #{$tabBar-height});
+    padding: calc(#{$topBar-height} + #{$header-height} + #{$tabBar-height}) 0;
     background-color: $background-body;
 
     .styled-wrap {

@@ -24,12 +24,14 @@ $cyan:           #17a2b8 !default;
 $background-layouts:  $white;
 $background-body:     $gray-100;
 
-$heading:             3em;
+// fonts
+$heading:             3em; // h1
 
-$base:                3px;
+$base:                4px;
+$base2:               $base*2;
 
-$topBar-height:       $base*10;      // 30px
-$header-height:       $base*37;      // 111px
-$tabBar-height:       $base*15;      // 45px
+$topBar-height:       $base2;      // 30px
+$header-height:       $base2*2;      // 111px
+$tabBar-height:       $base2;      // 45px
 
 $border-default:     1px solid $gray-200;

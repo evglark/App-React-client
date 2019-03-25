@@ -30,7 +30,7 @@ export interface IPropsHOF {
 
 export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF): any => {
     class RouterComponent extends Component <IPropsHOC, IStateHOC>{
-        // Изначальное состояние
+        /** Изначальное состояние */
         static Component = null;
         state = {
             Component: RouterComponent.Component
@@ -38,27 +38,23 @@ export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF
 
         componentWillMount() {
             if(this.state.Component == null) {
-                // если свойство Public или AuthToken == true
-                // [true] передеть в State MainComponent
-                // [else] иначе редирект на логин
+                /**
+                 * если свойство Public или AuthToken == true, редирект на логин
+                 * TODO: переделать на setLocalStorage
+                 * */
                 if(Public || localStorage.getItem('AuthToken')) {
-                    // Component проходит проверку, и готовится к рендерингу
+                    /** Передеть MainComponent в State */
                     this.setState({Component: MainComponent});
-
-                    // AsyncReducer:
-                    // если AsyncReducer не false, значит нужно добавить редюсер асинхронно, для этого:
-                    // деструктуризацруем свойства AsyncReducer и пердаем их в функцию injectAsyncReducer
-                    if(AsyncReducer) {
-                        const {asyncReducer, reducerName, store} = AsyncReducer;
-                        injectAsyncReducer(asyncReducer, reducerName, store);
-                    }
+                    /** если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
+                    AsyncReducer && injectAsyncReducer(AsyncReducer);
+                    console.log(1);
                 } else {
                     this.props.history.push('/sign-in');
                 }
             }
         }
 
-        render() {
+        render(): JSX.Element {
             const {Component} = this.state;
             let View = Component ? <Component {...this.props} /> : null;
 

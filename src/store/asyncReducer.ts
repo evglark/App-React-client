@@ -1,6 +1,13 @@
 import {createReducers} from './reducers'
 
-export const injectAsyncReducer = (asyncReducer: Function, reducerName: string, store: any): void => {
+interface IProps {
+    asyncReducer: Function;
+    reducerName: string;
+    store: any;
+}
+
+export const injectAsyncReducer = (props: IProps): void => {
+    const {asyncReducer, reducerName, store} = props;
     !store.asyncReducers[reducerName] &&
         console.info(`[IAR] reducer with name "${reducerName}" already in use`);
 
