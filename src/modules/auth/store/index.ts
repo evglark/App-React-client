@@ -1,5 +1,5 @@
 import {createReducer} from 'store/createReducer'
-import {AUTH_LOGIN} from './actions'
+import {AUTH_REG, AUTH_LOGIN} from './actions'
 
 /**
  * Interface for InitState
@@ -41,6 +41,10 @@ export const initState: IInitState = {
 
 // Action Handlers
 export const actionHandlers = {
+    [AUTH_REG.REQUEST]: (state: IInitState): IInitState => ({...state}),
+    [AUTH_REG.SUCCESS]: (state: IInitState, { payload }): IInitState => ({...state}),
+    [AUTH_REG.FAIL]: (state: IInitState, { payload }): IInitState => ({...state}),
+
     [AUTH_LOGIN.REQUEST]: (state: IInitState): IInitState => ({
         ...state,
         isLoading: true,
@@ -61,18 +65,15 @@ export const actionHandlers = {
             message: null
         }
     }),
-    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): IInitState => {
-        console.log(payload);
-        return ({
-            ...state,
-            isLoading: false,
-            error: {
-                status: true,
-                code: payload.response.status,
-                message: payload.response.message
-            }
-        })
-    }
+    [AUTH_LOGIN.FAIL]: (state: IInitState, { payload }): IInitState => ({
+        ...state,
+        isLoading: false,
+        error: {
+            status: true,
+            code: payload.response.status,
+            message: payload.response.message
+        }
+    })
 };
 
 export const authStore = createReducer(initState, actionHandlers);

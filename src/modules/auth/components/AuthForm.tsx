@@ -75,32 +75,21 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
         return (
             <div>
                 <form id='login-form' onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        name="login"
-                        value={this.state.email}
-                        onChange={this.setEmail}
-                        placeholder="login"
-                    /><br />
 
-                    <input
-                        type="text"
-                        name="login"
-                        value={this.state.password}
-                        onChange={this.setPassword}
-                        placeholder="password"
-                    /><br />
+                    <input type="text" name="login" placeholder="login"
+                        value={this.state.email} onChange={this.setEmail} />
+                    <br />
 
-                    <input
-                        type='checkbox'
-                        name='checkForRemember'
-                        checked={this.state.rememberPass}
-                        onChange={this.setRememberPass}
-                    />
+                    <input type="text" name="login" placeholder="password"
+                        value={this.state.password} onChange={this.setPassword} />
+                    <br />
+
+                    <input type='checkbox' name='checkForRemember'
+                        checked={this.state.rememberPass} onChange={this.setRememberPass} />
                     <label htmlFor='checkForRemember'>Remember my password</label>
                     <br />
-                </form>
 
+                </form>
                 <input value="Log In" type="submit" className="fadeIn fourth" form='login-form'/>
             </div>
         )

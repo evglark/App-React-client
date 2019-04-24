@@ -45,9 +45,9 @@ export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF
                 if(Public || localStorage.getItem('AuthToken')) {
                     /** Передеть MainComponent в State */
                     this.setState({Component: MainComponent});
+
                     /** если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
                     AsyncReducer && injectAsyncReducer(AsyncReducer);
-                    console.log(1);
                 } else {
                     this.props.history.push('/sign-in');
                 }
@@ -56,9 +56,7 @@ export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF
 
         render(): JSX.Element {
             const {Component} = this.state;
-            let View = Component ? <Component {...this.props} /> : null;
-
-            return View
+            return this.state.Component ? <Component {...this.props} /> : null;
         }
     }
 
