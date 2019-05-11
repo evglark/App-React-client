@@ -10,7 +10,7 @@ interface IPropsHOC {
 }
 
 /**
- * @props {JSX.Element} Component default null, 
+ * @props {JSX.Element} Component default null,
  * получает компонент из пропсов и определеяет показывать его или нет
  */
 interface IStateHOC {
@@ -37,26 +37,17 @@ export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF
         };
 
         componentWillMount() {
-            if(this.state.Component == null) {
-                /**
-                 * если свойство Public или AuthToken == true, редирект на логин
-                 * TODO: переделать на setLocalStorage
-                 * */
-                if(Public || localStorage.getItem('AuthToken')) {
-                    /** Передеть MainComponent в State */
-                    this.setState({Component: MainComponent});
-
-                    /** если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
-                    AsyncReducer && injectAsyncReducer(AsyncReducer);
-                } else {
-                    this.props.history.push('/sign-in');
-                }
+            if(this.state.Component === null) {
+                /** Передеть MainComponent в State */
+                this.setState({Component: MainComponent});
+                /** если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
+                AsyncReducer && injectAsyncReducer(AsyncReducer);
             }
         }
 
         render(): JSX.Element {
             const {Component} = this.state;
-            return this.state.Component ? <Component {...this.props} /> : null;
+            return Component ? <Component {...this.props} /> : null;
         }
     }
 

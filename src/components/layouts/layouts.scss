@@ -1,23 +1,21 @@
-@import '../style/variables.scss';
+@import '../../variables';
+
+$topBar-height:       $base*10;    // 40px;
+$header-height:       $base*20;    // 80px;
+$tabBar-height:       $base*10;    // 40px;
 
 .layout-topBar {
     width: 100%;
     height: $topBar-height;
-    position: fixed;
-    top: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: $border-default;
 }
 
 .header {
     height: $header-height;
-    margin-top: $topBar-height;
+    padding-left: $base*10;
+    margin-bottom: $base*10;
 
     .layout-title {
-        height: $base*13;// 39px
+        height: $base*13;
         display: flex;
         flex-flow: column;
         justify-content: center;
@@ -55,20 +53,20 @@
 }
 
 .styled-body {
-    padding: calc(#{$topBar-height} + #{$header-height} + #{$tabBar-height}) 0;
+    padding: $base*10 0;
     background-color: $background-body;
 
     .styled-wrap {
         width: 100%;
         margin: 0;
-        padding: 0 16px;
+        padding: 0 $base*4;
         box-sizing: border-box;
     }
 }
 
 .layout-tabBar {
     width: 100%;
-    height: $tabBar-height;// 45px
+    height: $tabBar-height;
     position: fixed;
     bottom: 0;
 

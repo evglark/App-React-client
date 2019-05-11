@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import * as _ from 'lodash'
-import {IInitState} from '../store'
-import {IAuthActions, signIn} from '../store/actions'
+import {IInitState} from '../../store'
+import {IAuthActions, signIn} from '../../store/actions'
 
 /**
  * Interface for IError
@@ -77,15 +77,15 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
                 <form id='login-form' onSubmit={this.handleSubmit}>
 
                     <input type="text" name="login" placeholder="login"
-                        value={this.state.email} onChange={this.setEmail} />
+                           value={this.state.email} onChange={this.setEmail} />
                     <br />
 
                     <input type="text" name="login" placeholder="password"
-                        value={this.state.password} onChange={this.setPassword} />
+                           value={this.state.password} onChange={this.setPassword} />
                     <br />
 
                     <input type='checkbox' name='checkForRemember'
-                        checked={this.state.rememberPass} onChange={this.setRememberPass} />
+                           checked={this.state.rememberPass} onChange={this.setRememberPass} />
                     <label htmlFor='checkForRemember'>Remember my password</label>
                     <br />
 
@@ -97,8 +97,7 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
 }
 
 const mapState = (state): IInitState => {
-    const {authReducers: {token, user, isLoading, error}} = state;
-    return ({token, user, isLoading, error});
+    return state.authReducer;
 };
 
 const mapDispatch = (dispatch): IAuthActions => ({

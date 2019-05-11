@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Cityscape, Iceberg} from 'components/icons'
+import {Home, Cityscape, Iceberg} from 'Components/icons'
 
 
 interface IProps {
@@ -19,37 +19,38 @@ interface IState {
 
 export class Layouts extends React.Component<IProps, IState> {
     state: IState = {
-        IconsNavBar: [{
-            path: "/",
-            name: "Home",
-            icon: <div/>
-        }, {
-            path: "/posts",
-            name: "Posts",
-            icon: <div/>
-        }, {
-            path: "/",
-            name: "Som",
-            icon: <div/>
-        }]
+        IconsNavBar: [
+            {
+                path: "/",
+                name: "Home",
+                icon: <div/>
+            }, {
+                path: "/posts",
+                name: "Posts",
+                icon: <div/>
+            }, {
+                path: "/",
+                name: "Som",
+                icon: <div/>
+            }
+        ]
     };
 
     private renderTopBar(): JSX.Element {
         return (
-            <div className="layout-topBar">1</div>
+            <div className="layout-topBar" />
         );
     }
 
     private renderHeader(): JSX.Element {
-        const {IconsNavBar} = this.state;
         return (
             <div className="header">
                 <div className="layout-title">Hello World!!!</div>
                 <div className="layout-navBar">
                     <ul className="ul-navBar-menu">
                         {
-                            IconsNavBar &&
-                            IconsNavBar.map(item => (
+                            this.state.IconsNavBar &&
+                            this.state.IconsNavBar.map(item => (
                                 <li className="li-navBar-item" key={`key-navBar-${item.name.toLowerCase()}`}>
                                     <Link to={item.path}>
                                         <div className="img-navBar-link">{item.icon}</div>
@@ -71,24 +72,16 @@ export class Layouts extends React.Component<IProps, IState> {
     }
 
     public render(): JSX.Element {
-        let authToken: boolean = Boolean(localStorage.getItem('AuthToken'));
         return (
             <Fragment>
-                {authToken && (
-                    <Fragment>
-                        {this.renderTopBar()}
-                        {this.renderHeader()}
-                    </Fragment>
-                )}
+                {this.renderTopBar()}
+                {this.renderHeader()}
                 <div className="styled-body">
                     <div className="styled-wrap">
                         {this.props.children}
                     </div>
                 </div>
-                {
-                    authToken &&
-                    this.renderTabBar()
-                }
+                {this.renderTabBar()}
             </Fragment>
         );
     }

@@ -29,8 +29,8 @@ interface IError {
 
 // Init State
 export const initState: IInitState = {
-    token: localStorage.getItem('AuthToken') || sessionStorage.getItem('AuthToken') || null,
-    user: JSON.parse(localStorage.getItem('User')) || JSON.parse(sessionStorage.getItem('User')) || null,
+    token: '',
+    user: '',
     isLoading: false,
     error: {
         status: null,
@@ -44,7 +44,6 @@ export const actionHandlers = {
     [AUTH_REG.REQUEST]: (state: IInitState): IInitState => ({...state}),
     [AUTH_REG.SUCCESS]: (state: IInitState, { payload }): IInitState => ({...state}),
     [AUTH_REG.FAIL]: (state: IInitState, { payload }): IInitState => ({...state}),
-
     [AUTH_LOGIN.REQUEST]: (state: IInitState): IInitState => ({
         ...state,
         isLoading: true,
@@ -76,4 +75,4 @@ export const actionHandlers = {
     })
 };
 
-export const authStore = createReducer(initState, actionHandlers);
+export const authReducer = createReducer(initState, actionHandlers);
