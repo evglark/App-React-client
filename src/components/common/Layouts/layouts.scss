@@ -1,4 +1,4 @@
-@import '../../variables';
+@import '../../../variables';
 
 $topBar-height:       $base*10;    // 40px;
 $header-height:       $base*20;    // 80px;
@@ -7,6 +7,8 @@ $tabBar-height:       $base*10;    // 40px;
 .layout-topBar {
     width: 100%;
     height: $topBar-height;
+
+    background-color: white;
 }
 
 .header {
@@ -53,6 +55,7 @@ $tabBar-height:       $base*10;    // 40px;
 }
 
 .styled-body {
+    height:100%;
     padding: $base*10 0;
     background-color: $background-body;
 
@@ -73,5 +76,6 @@ $tabBar-height:       $base*10;    // 40px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: white;
     border-top: $border-default;
 }

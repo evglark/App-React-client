@@ -1,4 +1,5 @@
 import React from 'react'
+import {Calendar} from '../../../Components/common/DatePicker'
 
 const posts = [1, 2, 3, 4, 5, 6];
 
@@ -12,11 +13,15 @@ class AuthForm extends React.Component {
     render() {
         return (
             <div>
-                {posts.map(item => (
-                    <div key={`key-posts-${item}`}>
-                        {this.renderPost()}
-                    </div>)
-                )}
+                <Calendar />
+                {
+                    posts.length > 0 &&
+                    posts.map(item => (
+                        <div key={`key-posts-${item}`}>
+                            {this.renderPost()}
+                        </div>
+                    ))
+                }
             </div>
         )
     }
