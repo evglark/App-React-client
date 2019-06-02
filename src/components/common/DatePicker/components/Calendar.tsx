@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
 import {Moment} from 'moment'
-import {ControlLine} from './controlLine'
-import {Month} from './calendar/Month'
-import './style.scss'
+import {ControlLine} from './ControlLine'
+import {Month} from './Month'
+import '../style.scss'
 
 const moment = require('moment');
 
@@ -15,16 +15,17 @@ interface IState {
 
 export class Calendar extends React.Component {
     state: IState = {
-        currentDate: moment().format('M')
+        currentDate: moment()
     };
 
     public render(): JSX.Element {
-        console.log(this.state.currentDate);
         return (
-            <Fragment>
-                <ControlLine />
-                <Month />
-            </Fragment>
+            <div className="date-picker">
+                <ControlLine currentDate={this.state.currentDate} />
+                <Month
+                    currentDate={this.state.currentDate}
+                />
+            </div>
         );
     }
 }

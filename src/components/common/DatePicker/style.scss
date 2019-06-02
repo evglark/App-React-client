@@ -1,0 +1,68 @@
+@import '../../../variables';
+
+$DatePicker-gray:     $gray-400;
+
+.date-picker {
+  max-width: $base*80;
+
+  .control-line {
+    display: flex;
+    justify-content: space-between;
+
+    .month-name {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+    }
+
+    button {
+      width: 90px;
+      height: 44px;
+      border-radius: 8px;
+      margin-bottom: 2px;
+    }
+  }
+
+  .month {
+    max-width: $base*80;
+
+    .week {
+      display: flex;
+
+      :last-of-type {
+        margin-right: 0
+      }
+
+      .day {
+        width: 44px;
+        height: 44px;
+        margin-right: 2px;
+        margin-bottom: 2px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 8px;
+        border: 1px solid $DatePicker-gray;
+      }
+
+      .prev-month {
+        color: $DatePicker-gray;
+      }
+
+      .current-month {
+        color: black;
+
+        &:hover {
+          background-color: $DatePicker-gray;
+          cursor: pointer;
+        }
+      }
+
+      .next-month {
+        color: $DatePicker-gray;
+      }
+    }
+  }
+}
