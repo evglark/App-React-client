@@ -8,8 +8,9 @@ interface IProps {
 
 export const injectAsyncReducer = (props: IProps): void => {
     const {asyncReducer, reducerName, store} = props;
-    !store.asyncReducers[reducerName] &&
+    if(!store.asyncReducers[reducerName]) {
         console.info(`[IAR] reducer with name "${reducerName}" already in use`);
+    }
 
     store.asyncReducers[reducerName] = asyncReducer;
     const reducer = createReducers(store.asyncReducers);

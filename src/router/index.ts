@@ -1,6 +1,4 @@
 import {routerComponent, IPropsHOF} from './routerComponent'
-import {authModule as Auth} from 'modules/auth'
-import Posts from 'modules/posts'
 
 /**
  * @prop {string} path.
@@ -20,14 +18,7 @@ export const routers = (store): IRouter[] => {
         component: routerComponent({
             Public: true,
             AsyncReducer: false,
-            MainComponent: Auth.Components.AuthForm
+            MainComponent: () => ("Hello world!!!")
         })
-    }, {
-        path: '/posts',
-        component: routerComponent({
-            Public: true,
-            AsyncReducer: {asyncReducer: Posts.Store, reducerName: 'postsReducer', store: store},
-            MainComponent: Posts.Components.PostList
-        })
-    }];
-}
+    }]
+};

@@ -40,7 +40,7 @@ export const routerComponent = ({Public, AsyncReducer, MainComponent}: IPropsHOF
             if(this.state.Component === null) {
                 /** Передеть MainComponent в State */
                 this.setState({Component: MainComponent});
-                /** если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
+                /** Если AsyncReducer true, добавляем редюсер асинхронно (пердаем их в функцию injectAsyncReducer) */
                 AsyncReducer && injectAsyncReducer(AsyncReducer);
             }
         }
