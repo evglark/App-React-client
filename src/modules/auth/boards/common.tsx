@@ -1,5 +1,5 @@
 import React from 'react'
-import {authComponents} from '../components'
+import {Components} from '../index'
 
 enum EFormState {
     AUTH = "AUTH",
@@ -11,18 +11,17 @@ interface IAuthCommonBoardState {
 }
 
 class AuthCommonBoard extends React.Component<any, IAuthCommonBoardState>{
-    constructor(props) {
-        super(props);
 
-        // @ts-ignore
-        this.state = {
-            formMode: null
-        }
-    }
+    state: IAuthCommonBoardState = {
+        formMode: EFormState.AUTH
+    };
 
     render() {
         return (
-            authComponents.AuthForm
+            <div>
+                {this.state.formMode}
+                {Components.AuthForm}
+            </div>
         );
     }
 }

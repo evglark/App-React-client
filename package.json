@@ -3,14 +3,10 @@
   "version": "0.0.1",
   "license": "MIT",
   "babel": {
-    "presets": [
-      "env",
-      "stage-0",
-      "react"
-    ]
+    "presets": ["env", "stage-0", "react"]
   },
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
   "dependencies": {

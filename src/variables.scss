@@ -1,28 +1,21 @@
 $white:          #fff !default;
-$gray-100:       #f8f9fa !default;
 $gray-200:       #e9ecef !default;
-$gray-300:       #dee2e6 !default;
 $gray-400:       #ced4da !default;
-$gray-500:       #adb5bd !default;
 $gray-600:       #6c757d !default;
-$gray-700:       #495057 !default;
 $gray-800:       #343a40 !default;
-$gray-900:       #212529 !default;
 $black:          #000 !default;
 
-$blue:           #007bff !default;
-$indigo:         #6610f2 !default;
-$purple:         #6f42c1 !default;
-$pink:           #e83e8c !default;
-$red:            #dc3545 !default;
-$orange:         #fd7e14 !default;
-$yellow:         #ffc107 !default;
-$green:          #28a745 !default;
-$teal:           #20c997 !default;
-$cyan:           #17a2b8 !default;
+$primary:        #FFB455 !default;
+$green:          #45CD82 !default;
+$red:            #FF6E56 !default;
+$yellow:          #fab615 !default;
 
-$background-layouts:  $white;
-$background-body:     $gray-100;
+$text-color:     #2f577a !default;
+$sub-text-color: #8da3b6 !default;
+
+$background-body:     #f8fbfe;
+$background-layouts:  radial-gradient(at top, #285477, #1d405d);
+$background-icons:    radial-gradient(at top, #fab615, #f47d1f);
 
 // fonts
 $heading:             3em; // h1

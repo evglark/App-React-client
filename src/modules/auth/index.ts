@@ -1,7 +1,12 @@
-import {authComponents} from './components'
+import {AuthForm} from './components/AuthForm'
+import {RegistrationForm} from './components/RegistrationForm'
 import {authReducer} from './store'
 
-const Components = authComponents;
-const Store = authReducer;
+export const Components = {
+    AuthForm,
+    RegistrationForm
+};
+
+export const Store = authReducer;
 
 export const authModule = {Components, Store};

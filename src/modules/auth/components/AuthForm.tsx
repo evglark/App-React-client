@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import * as _ from 'lodash'
-import {IInitState} from '../../store'
-import {IAuthActions, signIn} from '../../store/actions'
+import {IInitState} from '../store'
+import {IAuthActions, signIn} from '../store/actions'
+import {Input} from '../../../Components/common/Input'
 
 /**
  * Interface for IError
@@ -27,7 +28,8 @@ interface IState {
 type IAuthFormProps = IProps & IInitState & IAuthActions;
 
 class __AuthForm extends React.Component<IAuthFormProps, IState> {
-    public state: IState = {
+
+    state: IState = {
         email: '',
         password: '',
         rememberPass: true
@@ -72,23 +74,38 @@ class __AuthForm extends React.Component<IAuthFormProps, IState> {
     };
 
     public render(): JSX.Element {
+        const inputsForm = [{
+            id: 'login',
+            name: 'Login',
+            placeholder: 'Enter your login',
+            value: this.state.email,
+            onChange: this.setEmail,
+        }, {
+            id: 'password',
+            name: 'Password',
+            placeholder: 'Enter your password',
+            value: this.state.password,
+            onChange: this.setPassword
+        }];
+
         return (
             <div>
                 <form id='login-form' onSubmit={this.handleSubmit}>
-
-                    <input type="text" name="login" placeholder="login"
-                           value={this.state.email} onChange={this.setEmail} />
-                    <br />
-
-                    <input type="text" name="login" placeholder="password"
-                           value={this.state.password} onChange={this.setPassword} />
-                    <br />
+                    {inputsForm.map((item, i) => (
+                        <Input
+                            id={item.id}
+                            name={item.name}
+                            placeholder={item.placeholder}
+                            value={item.value}
+                            onChange={item.onChange}
+                            key={`key-${i}-${item.id}`}
+                        />
+                    ))}
 
                     <input type='checkbox' name='checkForRemember'
                            checked={this.state.rememberPass} onChange={this.setRememberPass} />
                     <label htmlFor='checkForRemember'>Remember my password</label>
                     <br />
-
                 </form>
                 <input value="Log In" type="submit" className="fadeIn fourth" form='login-form'/>
             </div>

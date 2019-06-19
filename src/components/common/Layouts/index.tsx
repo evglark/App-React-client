@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {Home, Cityscape, Iceberg} from 'Components/icons'
-
+import './layouts.scss'
 
 interface IProps {
     children: JSX.Element;
