@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import * as _ from 'lodash'
-import {IInitState} from '../../store'
-import {IAuthActions, signIn} from '../../store/actions'
+import {IInitState} from '../store'
+import {IAuthActions, signIn} from '../store/actions'
 
 /**
  * Interface for IError
@@ -27,7 +27,8 @@ interface IState {
 type IAuthFormProps = IProps & IInitState & IAuthActions;
 
 class __AuthForm extends React.Component<IAuthFormProps, IState> {
-    public state: IState = {
+
+    state: IState = {
         email: '',
         password: '',
         rememberPass: true

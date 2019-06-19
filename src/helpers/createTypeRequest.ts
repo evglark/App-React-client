@@ -1,11 +1,15 @@
 class ActionTypes {
-    constructor(baseType) {
+    REQUEST: string;
+    SUCCESS: string;
+    FAIL: string;
+
+    constructor(baseType: string) {
         this.REQUEST = `${baseType}-REQUEST`;
         this.SUCCESS = `${baseType}-SUCCESS`;
         this.FAIL    = `${baseType}-FAIL`;
     }
 
-    getValues() {
+    getValues(): string[] {
         return Object.values(this);
     }
 }

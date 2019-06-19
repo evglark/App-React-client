@@ -2,6 +2,7 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 @import 'Components/common/Layouts/layouts.scss';
-@import './Modules/auth/components/style.scss';
 
-html, body, #root {height:100%;}
+@import './Modules/auth/style.scss';
+
+html, body, #root {height: 100%}
