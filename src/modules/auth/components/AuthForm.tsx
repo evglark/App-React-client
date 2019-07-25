@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import * as _ from 'lodash'
 import {IInitState} from '../store'
 import {IAuthActions, signIn} from '../store/actions'
+<<<<<<< HEAD:src/modules/auth/components/AuthForm.tsx
 import {Input} from '../../../Components/common/Input'
+=======
+>>>>>>> f64f552e76edd77c7e2a2dbb186b65c751057e6b:src/modules/auth/components/AuthForm.tsx
 
 /**
  * Interface for IError
