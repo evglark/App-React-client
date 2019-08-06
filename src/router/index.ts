@@ -20,7 +20,7 @@ export const routers = (store): IRouter[] => {
         component: routerComponent({
             Public: true,
             AsyncReducer: false,
-            MainComponent: Auth.Components.AuthForm
+            MainComponent: Auth.Boards.AuthCommonBoard
         })
     }, {
         path: '/posts',

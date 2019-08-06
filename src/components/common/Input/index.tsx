@@ -1,41 +1,44 @@
 import React from 'react'
 import './input.scss'
 
-interface IProps extends React.HTMLProps<HTMLInputElement> {
+export interface IInputProps extends React.HTMLProps<HTMLInputElement>{
     id: string;
     name: string;
-    mask?: string;
+    label?: string;
+    value: string;
+    regexp?: RegExp;
+    setter: (value: string) => void;
 }
 
-/**
- * Interface for State of Input
- * @props {boolean} valid Валидность значения.
- */
-interface IState {
-    valid: boolean;
-}
-
-export class Input extends React.Component<IProps, IState> {
-
-    state: IState = {
-        valid: true
+export class Input extends React.Component<IInputProps, {}> {
+    public setValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        this.props.setter(e.target.value);
     };
 
     public render(): JSX.Element {
-        const {id, name, type, placeholder} = this.props;
+        const {id, name, label, type, placeholder, value, regexp} = this.props;
         const inputClass: string[] = ['common-input'];
         const labelClass: string[] = ['common-label'];
+        const regexpTest = regexp && regexp.test(value) || !value;
+
+        if(regexp && !regexpTest) {
+            inputClass.push('common-input-error');
+            labelClass.push('common-label-error');
+        }
 
         return (
-            <div className="field">
-                <input
-                    id={id}
-                    name={name}
-                    type={type ? type : 'text'}
-                    className={inputClass.join(' ')}
-                    placeholder={placeholder ? placeholder : 'Some text...'}
+            <div className="common-field">
+                <input id={id} name={name} type={type ? type : 'text'}
+                       className={inputClass.join(' ')}
+                       placeholder={placeholder ? placeholder : 'Some text...'}
+                       onChange={this.setValue}
                 />
-                <label htmlFor={id} className={labelClass.join(' ')}>{name}</label>
+                <label
+                    htmlFor={id}
+                    className={labelClass.join(' ')}
+                >
+                    {label ? label : name}
+                </label>
             </div>
         );
     }

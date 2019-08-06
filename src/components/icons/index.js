@@ -1,5 +1,8 @@
-// https://www.flaticon.com/
+// https://www.iconfinder.com/iconsets/basic-user-interface-2
+export * from './menuIcon'
+export * from './listIcon'
+export * from './signUpIcon'
+export * from './signInIcon'
 
-export * from './homeIcon'
-export * from './cityscapeIcon'
-export * from './icebergIcon'
+export * from './settingIcon'
+export * from './searchIcon'

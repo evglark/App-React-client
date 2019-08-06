@@ -1,56 +1,76 @@
-.field {
+@import '../../../variables';
+
+$height-input:           $base*10;
+$input-font-size:        $base*6;
+$label-font-size:        $base*4;
+
+$background-input:       $white;
+$text-color-input:       $text-color;
+$label-color:            $sub-text-color;
+$error-color-input:      $red;
+
+.common-field {
   display: flex;
   flex-flow: column-reverse;
-}
 
-.common-input {
-  height: 52px;
-  width: 100%;
-  margin: 4px 0;
+  .common-input {
+    height: $height-input;
+    width: 100%;
+    margin: $base 0;
 
-  background-color: #EDF1F4;
-  padding: 0 4px;
-  font-size: 24px;
-  color: #7B95AB;
-  border-radius: 8px;
-  border: none;
-  outline: none;
+    padding: 0 $base*2;
+    font-size: $input-font-size;
+    border-radius: $base*2;
+    border: 1px solid $text-color-input;
+    background-color: $background-input;
+    color: $text-color-input;
 
-  &:focus {outline: 0}
-}
+    outline: none;
+    &:focus {outline: 0}
+  }
 
-.common-label {
-  padding: 0 4px;
-  font-size: 16px;
-  color: #7B95AB;
-}
+  .common-input-error {
+    border-color: $error-color-input;
+  }
 
-.common-label, .common-input {
-  transition: all 0.2s;
-  touch-action: manipulation;
-}
+  .common-label {
+     padding: 0 $base;
+     font-size: $label-font-size;
+     color: $label-color;
+   }
 
-.common-input:placeholder-shown + .common-label {
-  cursor: text;
-  max-width: 66.66%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform-origin: left bottom;
-  transform: translate(0, 3.5rem) scale(1.5);
-}
+  .common-label-error {
+    color: $error-color-input;
+  }
 
-::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
+  .common-label, .common-input {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
 
-.common-input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
+  .common-input:placeholder-shown + .common-label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 3rem) scale(1.5);
+  }
 
-.common-input:not(:placeholder-shown) + .common-label,
-.common-input:focus + .common-label {
-  transform: translate(0, 0.8em) scale(1.5);
-  cursor: pointer;
+  ::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+  }
+
+  .common-input:focus::-webkit-input-placeholder {
+    opacity: 1;
+  }
+
+  .common-input:not(:placeholder-shown) + .common-label,
+  .common-input:focus + .common-label {
+    color: $text-color-input;
+    transform: translate(0, 0.5em) scale(1);
+    cursor: pointer;
+  }
 }

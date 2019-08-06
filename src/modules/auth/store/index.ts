@@ -76,3 +76,4 @@ export const actionHandlers = {
 };
 
 export const authReducer = createReducer(initState, actionHandlers);
+export * from './actions'

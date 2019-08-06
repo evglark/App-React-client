@@ -7,15 +7,19 @@ $black:          #000 !default;
 
 $primary:        #FFB455 !default;
 $green:          #45CD82 !default;
-$red:            #FF6E56 !default;
-$yellow:          #fab615 !default;
+$red:            #FE5B76 !default;
+$yellow:         #fab615 !default;
 
 $text-color:     #2f577a !default;
 $sub-text-color: #8da3b6 !default;
 
-$background-body:     #f8fbfe;
-$background-layouts:  radial-gradient(at top, #285477, #1d405d);
-$background-icons:    radial-gradient(at top, #fab615, #f47d1f);
+$background-body:     #f8f9fb;
+$background-layouts:  $black;
+$background-icons:    $black;
+
+$text-color-input:       #7298f8;
+$label-color:            #638DF8;
+$color-red:              #FE5B76;
 
 // fonts
 $heading:             3em; // h1

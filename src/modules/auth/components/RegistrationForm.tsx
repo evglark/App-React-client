@@ -1,90 +1,117 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {IInitState} from '../store'
-import {IAuthActions, signUp} from '../store/actions'
-
-interface IProps {}
+import {Input} from 'Components/common/Input'
+import {IAuthActions, IInitState, signUp} from '../store'
 
 /**
  * Interface for IError
- * @props {string} email Поле - емаил пользователя.
+ * @props {string} login Поле - логин пользователя.
  * @props {string} password Поле - пароль пользователя.
  * @props {boolean} rememberPass Чекбокс - запомнить пароль.
  */
-interface IState {
-    email: string;
+interface IRegFormState {
+    login: string;
     password: string;
     firstName: string;
     lastName: string;
 }
 
-type IAuthFormProps = IProps & IInitState & IAuthActions;
+type IRegFormProps = IInitState & IAuthActions;
 
-class __RegistrationForm extends React.Component<IAuthFormProps, IState> {
-
-    state: IState = {
-        email: '',
-        password: '',
-        firstName: '',
-        lastName: ''
+class __RegistrationForm extends React.Component<IRegFormProps, IRegFormState> {
+    static state: IRegFormState;
+    private constructor(props: IRegFormProps) {
+        super(props);
+        this.state = {
+            login: '',
+            password: '',
+            firstName: '',
+            lastName: ''
+        };
     };
 
-    private setEmail = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.setState({email: e.target.value});
+    public setLogin = (value: string): void => {
+        this.setState({login: value});
     };
 
-    private setPassword = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.setState({password: e.target.value});
+    public setPassword = (value: string): void => {
+        this.setState({password: value});
     };
 
-    private setFirstName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.setState({firstName: e.target.value});
+    public setFirstName = (value: string): void => {
+        this.setState({firstName: value});
     };
 
-    private setLastName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        this.setState({lastName: e.target.value});
+    public setLastName = (value: string): void => {
+        this.setState({lastName: value});
     };
 
-    private handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-        const {email, password, firstName, lastName} = this.state;
+    public handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        const {login, password, firstName, lastName} = this.state;
+
         e.preventDefault();
-
-        this.props.signUp(email, password, firstName, lastName);
+        this.props.signUp(login, password, firstName, lastName);
     };
 
     public render(): JSX.Element {
+        const {login , password, firstName, lastName} = this.state;
+
+        const regexp = /^[a-zA-Z0-9._\b]+$/;
+        const invalidEmail = !login || !regexp.test(login);
+        const invalidPassword = !password || !regexp.test(password);
+        const invalidFirstName = !firstName || !regexp.test(firstName);
+        const invalidLastName = !lastName || !regexp.test(lastName);
+        const submitDisabled = invalidEmail || invalidPassword || invalidFirstName || invalidLastName;
+
+        const inputsRegForm = [{
+            id: 'login',
+            name: 'Login',
+            value: login,
+            placeholder: 'Enter your login',
+            setter: this.setLogin,
+            regexp
+        }, {
+            id: 'RegPassword',
+            name: 'Password',
+            placeholder: 'Enter your password',
+            value: password,
+            setter: this.setPassword,
+            regexp
+        }, {
+            id: 'firstName',
+            name: 'firstName',
+            label: 'First Name',
+            value: firstName,
+            placeholder: 'Enter your First Name',
+            setter: this.setFirstName,
+            regexp
+        }, {
+            id: 'lastName',
+            name: 'lastName',
+            label: 'Last Name',
+            placeholder: 'Enter your First Name',
+            value: lastName,
+            setter: this.setLastName,
+            regexp
+        }];
+
         return (
             <div>
                 <form id='login-form' onSubmit={this.handleSubmit}>
-
-                    <input type="text" name="login" placeholder="login"
-                           value={this.state.email} onChange={this.setEmail} />
-                    <br />
-
-                    <input type="text" name="password" placeholder="password"
-                           value={this.state.password} onChange={this.setPassword} />
-                    <br />
-
-                    <input type="text" name="firstName" placeholder="firstName"
-                           value={this.state.firstName} onChange={this.setFirstName} />
-                    <br />
-
-                    <input type="text" name="lastName" placeholder="lastName"
-                           value={this.state.lastName} onChange={this.setLastName} />
+                    {inputsRegForm.map((item, i) => <Input {...item} key={`key-${i}-${item.id}`} />)}
                 </form>
-                <input value="Log In" type="submit" className="fadeIn fourth" form='login-form'/>
+                <br />
+                <input value="Log In" type="submit" className="fadeIn fourth" form='login-form' disabled={submitDisabled}/>
             </div>
         )
     }
 }
 
-const mapState = (state): IInitState => {
-    return state.authReducer;
-};
+const mapState = (state): IInitState => state.authReducer;
 
 const mapDispatch = (dispatch): IAuthActions => ({
-    signUp: (email: string, password: string, firstName: string, lastName: string) => {
-        dispatch(signUp(email, password, firstName, lastName));
+    signUp: (login: string, password: string, firstName: string, lastName: string) => {
+        dispatch(signUp(login, password, firstName, lastName));
     }
 });
 

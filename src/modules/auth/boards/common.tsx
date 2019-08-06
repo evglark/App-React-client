@@ -1,29 +1,33 @@
 import React from 'react'
-import {Components} from '../index'
+import {AuthForm} from '../components/AuthForm'
+import {RegistrationForm} from '../components/RegistrationForm'
+import {Tab, Row, Col, Nav} from 'react-bootstrap'
 
 enum EFormState {
-    AUTH = "AUTH",
-    REG = "REG"
+    AUTH = 'AUTH',
+    REG = 'REG'
 }
 
 interface IAuthCommonBoardState {
     formMode: EFormState;
 }
 
-class AuthCommonBoard extends React.Component<any, IAuthCommonBoardState>{
-
-    state: IAuthCommonBoardState = {
-        formMode: EFormState.AUTH
+export class AuthCommonBoard extends React.Component<{}, IAuthCommonBoardState>{
+    static state: IAuthCommonBoardState;
+    private constructor(props: any) {
+        super(props);
+        this.state = {
+            formMode: EFormState.AUTH
+        };
     };
 
-    render() {
+    public render() {
         return (
             <div>
-                {this.state.formMode}
-                {Components.AuthForm}
+                <button onClick={() => this.setState({formMode: EFormState.REG})}>Reg</button>
+                <button onClick={() => this.setState({formMode: EFormState.AUTH})}>Auth</button>
+                {this.state.formMode === EFormState.AUTH ? <AuthForm /> : <RegistrationForm />}
             </div>
         );
     }
 }
-
-export default AuthCommonBoard
