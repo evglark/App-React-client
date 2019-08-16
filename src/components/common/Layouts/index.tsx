@@ -7,7 +7,6 @@ import {
     SignIn,
     Search,
     Setting,
-    MoonDark,
     MoonLight
 } from 'Components/icons'
 import './layouts.scss'
@@ -67,7 +66,7 @@ export class Layouts extends React.Component<IProps, IState> {
                 {path: "/search", id: "global-search", name: "Search", icon: <Search/>}
             ]
         };
-    }
+    };
 
     private changeTheme = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
         e.preventDefault();
