@@ -3,6 +3,10 @@
 // Libraries
 @import 'node_modules/bootstrap/scss/bootstrap';
 
+@import './variables';
+
 @import './Modules/auth/style.scss';
 
-html, body, #root {height: 100%}
+html, body, #root {
+    height: 100%;
+}

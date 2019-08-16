@@ -2,6 +2,7 @@ import React from 'react'
 import {AuthForm} from '../components/AuthForm'
 import {RegistrationForm} from '../components/RegistrationForm'
 import {Tab, Row, Col, Nav} from 'react-bootstrap'
+import {CommonPage} from 'Components/common/CommonPage'
 
 enum EFormState {
     AUTH = 'AUTH',
@@ -24,9 +25,10 @@ export class AuthCommonBoard extends React.Component<{}, IAuthCommonBoardState>{
     public render() {
         return (
             <div>
-                <button onClick={() => this.setState({formMode: EFormState.REG})}>Reg</button>
+                <CommonPage />
+                {/*<button onClick={() => this.setState({formMode: EFormState.REG})}>Reg</button>
                 <button onClick={() => this.setState({formMode: EFormState.AUTH})}>Auth</button>
-                {this.state.formMode === EFormState.AUTH ? <AuthForm /> : <RegistrationForm />}
+                {this.state.formMode === EFormState.AUTH ? <AuthForm sdfds={1} /> : <RegistrationForm />}*/}
             </div>
         );
     }

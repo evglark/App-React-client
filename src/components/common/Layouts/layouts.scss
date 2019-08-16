@@ -1,112 +1,131 @@
 @import '../../../variables';
 
-// Height elements
-$height-layout-topBar:             $base*5;    // 20px
-$height-header:                    $base*20;   // 80px
-$height-topBar-and-header:         calc(#{$height-layout-topBar} + #{$height-header}); // 100px
-$height-layout-tabBar:             calc(100% - #{$height-topBar-and-header});
-$height-mobil-big-tabBar-item:     $base*25;   // 100px
-$height-mobil-small-tabBar-item:   $base*12;   // 48px
+.common-class {
+    .styled-body {
+        position: absolute;
+        height: 100%; width: 100%;
+        padding-left: $width-layout-tab-bar-for-web;
 
-// Width elements
-$width-layout-tabBarMax:           $base*50;   // 200px
-$width-layout-tabBarMin:           $base*25;   // 100px
+        background-color: $background-body;
 
-.layout-topBar {
-    height: $height-layout-topBar;
-    background: $white;
-}
+        .styled-wrap {
+            padding: 12px;
+            box-sizing: border-box;
+        }
+    }
 
-.header {
-    height: $height-header;
-    background: $white;
-}
+    .layout-tab-bar {
+        position: absolute; top: 0;
+        height: 100%;
+        width: $width-layout-tab-bar-for-web;
+        padding-top: $height-header;
 
-.styled-body {
-    height: 100%;
-    width: 100%;
-    padding-left: $width-layout-tabBarMax;
+        background-color: $background-layout;
 
-    background-color: $background-body;
+        .layout-nav-bar {
+            height: 100%;
 
-    .styled-wrap {
-        padding: 12px;
-        box-sizing: border-box;
+            .ul-nav-bar-menu {
+                padding: 0; margin: 0;
+
+                .link-nav-bar-item {
+                    text-decoration: none;
+
+                    .li-nav-bar-item {
+                        height: $height-tab-bar-item-for-web;
+
+                        &:hover {
+                            outline: none;
+                            background-color: $background-body
+                        }
+
+                        .icon-nav-bar-link, .icon {
+                            height: $height-tab-bar-item-for-web;
+                            width: $height-tab-bar-item-for-web;
+                        }
+
+                        .name-nav-bar-link {
+                            font-weight: 500;
+                            color: $color-fonts-dark;
+
+                            .mark-item-nav-bar {
+                                width: $base*6;
+                                height: $base*4;
+                                margin: $base 0 0 $base;
+
+                                text-align: center;
+                                color: $color-fonts-light;
+                                border-radius: 50%;
+                                background-color: $color-fonts-dark;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .ul-nav-bar-menu, .system-menu {
+                margin-bottom: $base*20;
+            }
+        }
     }
 }
 
-.layout-tabBar {
-    position: absolute; top: 0;
+.dark-theme {
+    .styled-body {
+        background-color: $background-body-dark;
+    }
 
-    width: $width-layout-tabBarMax;
-    height: $height-layout-tabBar;
-    margin-top: $height-topBar-and-header;
+    .layout-tab-bar {
+        background-color: $background-layout-dark;
 
-    background-color: $white;
+        .layout-nav-bar {
+            .ul-nav-bar-menu {
+                .link-nav-bar-item {
+                    .li-nav-bar-item {
 
-    .layout-navBar {
-        height: 100%;
+                        &:hover {background-color: $background-hover-dark}
 
-        .ul-navBar-menu {
-            .link-navBar-item {
-                text-decoration: none;
-
-                .li-navBar-item {
-                    height: $height-mobil-small-tabBar-item;
-
-                    .icon-navBar-link {
-                        svg {
-                            height: $height-mobil-small-tabBar-item;
-                            width: $height-mobil-small-tabBar-item;
+                        .icon-nav-bar-link, .icon {
+                            .icon-item {stroke: $white}
                         }
-                    }
 
-                    .name-navBar-link {
-                        color: $black;
-                        font-weight: 500;
-                    }
-
-                    &:hover {
-                        background-color: $background-body;
-                        outline: none;
+                        .name-nav-bar-link {
+                            color: $color-fonts-light;
+                        }
                     }
                 }
             }
         }
     }
-
-    .common-menu {
-        padding: 0;
-        margin: 0;
-    }
-
-    .system-menu {
-        padding: 0;
-        margin: 0 0 $base*20 0;
-    }
 }
 
 @media (max-width: 1250px) {
-    .styled-body {
-        padding-left: $width-layout-tabBarMin;
-    }
+    .common-class {
+        .styled-body {
+            padding-left: $width-layout-tab-bar-for-mobil;
+        }
 
-    .layout-tabBar {
-        width: $width-layout-tabBarMin;
+        .layout-tab-bar {
+            width: $width-layout-tab-bar-for-mobil;
 
-        .layout-navBar {
-            .ul-navBar-menu {
-                .li-navBar-item {
-                    height: $height-mobil-big-tabBar-item;
+            .layout-nav-bar {
+                .ul-nav-bar-menu {
+                    padding: 0;
 
-                    .icon-navBar-link {
-                        svg {
-                            height: $height-mobil-big-tabBar-item;
-                            width: $height-mobil-big-tabBar-item;
+                    .link-nav-bar-item {
+                        .li-nav-bar-item {
+                            height: $height-tab-bar-item-for-mobil;
+
+                            .icon-nav-bar-link, .icon {
+                                height: $height-tab-bar-item-for-mobil;
+                                width: $height-tab-bar-item-for-mobil;
+                            }
+
+                            .name-nav-bar-link {
+                                display: none !important;
+                            }
                         }
                     }
-
-                    .name-navBar-link {display: none !important}
                 }
             }
         }

@@ -30,4 +30,4 @@ export const routers = (store): IRouter[] => {
             MainComponent: Posts.Components.PostList
         })
     }];
-}
+};

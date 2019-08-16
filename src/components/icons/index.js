@@ -6,3 +6,6 @@ export * from './signInIcon'
 
 export * from './settingIcon'
 export * from './searchIcon'
+
+export * from './moonIconDark'
+export * from './moonIconLight'
