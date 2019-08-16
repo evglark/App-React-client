@@ -1,30 +1,45 @@
-$white:          #fff !default;
-$gray-200:       #e9ecef !default;
-$gray-400:       #ced4da !default;
-$gray-600:       #6c757d !default;
-$gray-800:       #343a40 !default;
-$black:          #000 !default;
+$white:               #FFFFFF !default;
+$gray-200:            #E9ECEF !default;
+$gray-400:            #CED4DA !default;
+$gray-600:            #6C757D !default;
+$gray-800:            #343A40 !default;
+$black:               #000000 !default;
 
-$primary:        #FFB455 !default;
-$green:          #45CD82 !default;
-$red:            #FE5B76 !default;
-$yellow:         #fab615 !default;
+$primary:             #FFB455 !default;
+$green:               #45CD82 !default;
+$red:                 #FE5B76 !default;
+$yellow:              #fab615 !default;
 
-$text-color:     #2f577a !default;
-$sub-text-color: #8da3b6 !default;
+$text-color:          #2F577A !default;
+$sub-text-color:      #8DA3B6 !default;
 
-$background-body:     #f8f9fb;
-$background-layouts:  $black;
-$background-icons:    $black;
+// Default theme
+$background-body:                  #F8F9FB;
+$background-layout:                $white;
+$color-fonts-dark:                 $black;
 
-$text-color-input:       #7298f8;
-$label-color:            #638DF8;
-$color-red:              #FE5B76;
+// Dark theme
+$background-body-dark:             #262626;
+$background-layout-dark:           #333333;
+$background-hover-dark:            $black;
+$color-fonts-light:                $white;
 
-// fonts
+// Fonts
+$heading-for-page:    28px;
 $heading:             3em; // h1
 
+// Common
 $base:                4px;
 $base2:               $base*2;
 
 $border-default:     1px solid $gray-200;
+
+// Height common elements
+$height-header:                     $base*25;   // 100px
+
+$height-tab-bar-item-for-mobil:     $base*15;   // 60px
+$height-tab-bar-item-for-web:       $base*12;   // 48px
+
+// Width elements
+$width-layout-tab-bar-for-web:      $base*50;   // 200px
+$width-layout-tab-bar-for-mobil:    $base*15;   // 60px
