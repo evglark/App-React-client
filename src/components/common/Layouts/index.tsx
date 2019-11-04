@@ -5,11 +5,9 @@ import {
     List,
     SignUp,
     SignIn,
-    Search,
-    Setting,
-    MoonLight
 } from 'Components/icons'
 import './layouts.scss'
+import {string} from "prop-types";
 
 /**
  * Interface for IProps
@@ -24,16 +22,16 @@ interface IProps {
  * @props {string} path Path for Item nav bar.
  * @props {Function} func OnClick for Item nav bar.
  * @props {string} id Id of Item nav bar.
- * @props {string} name Name of Item nav bar.
+ * @props {string} [name] Name of Item nav bar.
  * @props {JSX.Element} [icon] Icon of Item nav bar.
  */
 interface INavBar {
     path?: string;
     func?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     id: string;
-    name: string;
+    name?: string;
     mark?: number;
-    icon?: JSX.Element;
+    icon?: JSX.Element|string;
 }
 
 /**
@@ -61,56 +59,51 @@ export class Layouts extends React.Component<IProps, IState> {
                 {path: "/authIn", id: "auth-sign-in", name: "Sign in", icon: <SignIn/>}
             ],
             systemMenu: [
-                {func: this.changeTheme, id: "theme", name: "Change theme", icon: <MoonLight />},
-                {path: "/setting", id: "global-setting", name: "Setting", icon: <Setting/>},
-                {path: "/search", id: "global-search", name: "Search", icon: <Search/>}
+                {path: "/setting", id: "global-setting", icon: "⚙️"},
+                {path: "/search", id: "global-search", icon: "🔎"},
+                {func: this.changeTheme, id: "theme", icon: "🎨"}
             ]
         };
     };
 
     private changeTheme = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
         e.preventDefault();
-        this.setState((state) => ({theme: state.theme === '' ? 'dark-theme' : ''}));
+        this.setState((state) => ({
+            theme: state.theme === '' ? 'dark-theme' : ''
+        }));
     };
 
-    private renderTabBars(): JSX.Element {
-        const {commonMenu, systemMenu} = this.state;
-        const renderUl = (item: INavBar): JSX.Element => (
-            <Link
-                to={item.path ? item.path : ''}
-                onClick={item.func && item.func}
-                className="link-nav-bar-item"
-                key={`layout-tab-bar-menu-item-key-${item.id}`}
+    private renderUl = (item: INavBar): JSX.Element => (
+        <Link
+            key={`layout-tab-bar-menu-item-key-${item.id}`}
+            className="link-nav-bar-item"
+            to={item.path ? item.path : ''}
+            onClick={item.func && item.func}
+        >
+            <li
+                key={`key-nav-bar-${item.id.toLowerCase()}`}
+                className="li-nav-bar-item d-flex justify-content-start"
             >
-                <li
-                    className="li-nav-bar-item d-flex justify-content-start"
-                    key={`key-nav-bar-${item.id.toLowerCase()}`}
-                >
-                    <div className="icon-nav-bar-link">{item.icon && item.icon}</div>
-                    <div className="name-nav-bar-link d-flex flex-column justify-content-center">
-                        {item.name && item.name}
+                {   item.icon &&
+                    <div className={typeof item.icon === 'string' ? "emoji-nav-bar-link" : "icon-nav-bar-link"}>
+                        {item.icon}
                     </div>
-                </li>
-            </Link>
-        );
-
-        return (
-            <div className="layout-tab-bar">
-                <div className="layout-nav-bar d-flex flex-column justify-content-between">
-                    <ul className="ul-nav-bar-menu common-menu">
-                        {commonMenu.map(item => renderUl(item))}
-                    </ul>
-                    <ul className="ul-nav-bar-menu system-menu">
-                        {systemMenu.map(item => renderUl(item))}
-                    </ul>
-                </div>
-            </div>
-        );
-    }
+                }
+                {
+                    item.name &&
+                    <div className="name-nav-bar-link">
+                        {item.name}
+                    </div>
+                }
+            </li>
+        </Link>
+    );
 
     public render(): JSX.Element {
+        const {theme, commonMenu, systemMenu} = this.state;
         const protoClass: string[] = ['common-class'];
-        protoClass.push(this.state.theme);
+        protoClass.push(theme);
+        console.log(typeof commonMenu[0].icon)
 
         return (
             <div className={protoClass.join(' ')}>
@@ -119,7 +112,16 @@ export class Layouts extends React.Component<IProps, IState> {
                         {this.props.children}
                     </div>
                 </div>
-                {this.renderTabBars()}
+                <div className="layout-tab-bar">
+                    <div className="layout-nav-bar">
+                        <ul className="common-menu ul-nav-bar-menu">
+                            {commonMenu.map(item => this.renderUl(item))}
+                        </ul>
+                        <ul className="system-menu ul-nav-bar-menu">
+                            {systemMenu.map(item => this.renderUl(item))}
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }

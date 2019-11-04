@@ -26,9 +26,7 @@ export class AuthCommonBoard extends React.Component<{}, IAuthCommonBoardState>{
         return (
             <div>
                 <CommonPage />
-                {/*<button onClick={() => this.setState({formMode: EFormState.REG})}>Reg</button>
-                <button onClick={() => this.setState({formMode: EFormState.AUTH})}>Auth</button>
-                {this.state.formMode === EFormState.AUTH ? <AuthForm sdfds={1} /> : <RegistrationForm />}*/}
+
             </div>
         );
     }

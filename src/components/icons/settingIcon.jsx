@@ -1,3 +1,4 @@
+// https://www.iconfinder.com/icons/2044265/gear_settings_icon
 import React from 'react'
 
 export const Setting = () => (

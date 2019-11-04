@@ -1,5 +1,5 @@
 const path = require('path');
-const autoprefixerPlugin = require('autoprefixer');
+const autoPrefixerPlugin = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -20,7 +20,7 @@ module.exports = (env, options) => {
             loader: 'postcss-loader',
             options: {
                 plugins: [
-                    autoprefixerPlugin({
+                    autoPrefixerPlugin({
                         browsers: ['> 1%', 'last 2 versions'],
                     }),
                 ],

@@ -8,7 +8,9 @@ $black:               #000000 !default;
 $primary:             #FFB455 !default;
 $green:               #45CD82 !default;
 $red:                 #FE5B76 !default;
-$yellow:              #fab615 !default;
+$pink:                #FF69B4 !default;
+$yellow:              #FAB615 !default;
+
 
 $text-color:          #2F577A !default;
 $sub-text-color:      #8DA3B6 !default;
@@ -41,5 +43,5 @@ $height-tab-bar-item-for-mobil:     $base*15;   // 60px
 $height-tab-bar-item-for-web:       $base*12;   // 48px
 
 // Width elements
-$width-layout-tab-bar-for-web:      $base*50;   // 200px
+$width-layout-tab-bar-for-web:      $base*45;   // 200px
 $width-layout-tab-bar-for-mobil:    $base*15;   // 60px

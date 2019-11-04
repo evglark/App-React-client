@@ -1,3 +1,4 @@
+// https://www.iconfinder.com/icons/2044249/checklist_list_icon
 import React from 'react'
 
 export const List = () => (

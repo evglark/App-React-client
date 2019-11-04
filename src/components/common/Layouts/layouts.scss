@@ -25,18 +25,58 @@
         .layout-nav-bar {
             height: 100%;
 
-            .ul-nav-bar-menu {
-                padding: 0; margin: 0;
+            .common-menu {
+                padding: 0;
+                margin: 0 0 $base*20 0;
 
                 .link-nav-bar-item {
-                    text-decoration: none;
-
                     .li-nav-bar-item {
                         height: $height-tab-bar-item-for-web;
 
                         &:hover {
-                            outline: none;
                             background-color: $background-body
+                        }
+
+                        .name-nav-bar-link {
+                            color: $color-fonts-dark;
+                        }
+                    }
+                }
+            }
+
+            .system-menu {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+
+                width: $width-layout-tab-bar-for-web*2;
+
+                .link-nav-bar-item {
+                    background-color: $green;
+                    margin-left: $base2*5;
+                    font-size: $base*8;
+                    border-radius: 50%;
+
+                    &:last-child {
+                        margin-left: $base2*10;
+                    }
+
+                    &:hover {
+                        background-color: $pink;
+                    }
+                }
+            }
+
+
+            .ul-nav-bar-menu {
+                .link-nav-bar-item {
+                    text-decoration: none;
+
+                    .li-nav-bar-item {
+                        text-align: center;
+
+                        &:hover {
+                            outline: none;
                         }
 
                         .icon-nav-bar-link, .icon {
@@ -46,25 +86,9 @@
 
                         .name-nav-bar-link {
                             font-weight: 500;
-                            color: $color-fonts-dark;
-
-                            .mark-item-nav-bar {
-                                width: $base*6;
-                                height: $base*4;
-                                margin: $base 0 0 $base;
-
-                                text-align: center;
-                                color: $color-fonts-light;
-                                border-radius: 50%;
-                                background-color: $color-fonts-dark;
-                            }
                         }
                     }
                 }
-            }
-
-            .ul-nav-bar-menu, .system-menu {
-                margin-bottom: $base*20;
             }
         }
     }
@@ -79,11 +103,13 @@
         background-color: $background-layout-dark;
 
         .layout-nav-bar {
-            .ul-nav-bar-menu {
+            .common-menu {
                 .link-nav-bar-item {
                     .li-nav-bar-item {
 
-                        &:hover {background-color: $background-hover-dark}
+                        &:hover {
+                            background-color: $background-hover-dark
+                        }
 
                         .icon-nav-bar-link, .icon {
                             .icon-item {stroke: $white}
@@ -109,7 +135,7 @@
             width: $width-layout-tab-bar-for-mobil;
 
             .layout-nav-bar {
-                .ul-nav-bar-menu {
+                .common-menu {
                     padding: 0;
 
                     .link-nav-bar-item {

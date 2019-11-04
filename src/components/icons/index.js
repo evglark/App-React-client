@@ -7,4 +7,5 @@ export * from './signInIcon'
 export * from './settingIcon'
 export * from './searchIcon'
 
-export * from './moonIconLight'
+export * from './sunLightIcon'
+export * from './sunDarkIcon'

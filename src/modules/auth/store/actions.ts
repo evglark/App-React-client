@@ -1,5 +1,5 @@
 import {RSAA} from 'redux-api-middleware'
-import {createTypeRequest} from 'helpers/createTypeRequest'
+import {createTypeRequest} from 'services/createTypeRequest'
 
 export const KEY: string = 'AUTH';
 export const AUTH_REG = createTypeRequest(`${KEY}-REG`);
