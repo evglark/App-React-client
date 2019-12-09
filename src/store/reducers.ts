@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
-import {authReducer} from 'modules/auth/store'
+// import {authReducer} from 'Modules/auth/store'
 
 /**
- * @param asyncReducers modules/store/any
+ * @param asyncReducers Modules/store/any
  */
 export const createReducers = (asyncReducers = {}) => {
     return combineReducers({
-        authReducer,
+        // authReducer,
         ...asyncReducers,
     })
 };

@@ -1,14 +1,23 @@
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
-import {renderRoutes} from 'react-router-config'
-import {Layouts} from 'Components/common/Layouts'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
-const App = ({router}) => {
+import {Layouts} from 'Components/common/Layouts'
+import {MainPage} from 'Modules/main'
+import {AboutPage} from 'Modules/about'
+
+export const App = () => {
     return (
         <BrowserRouter basename='/'>
-            <Layouts children={renderRoutes(router)} />
+            <Layouts>
+                <Switch>
+                    <Route exact path="/">
+                        <MainPage />
+                    </Route>
+                    <Route path="/about">
+                        <AboutPage />
+                    </Route>
+                </Switch>
+            </Layouts>
         </BrowserRouter>
     )
 };
-
-export default App

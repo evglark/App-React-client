@@ -1,12 +1,18 @@
-// https://www.behance.net/gallery/82332567/Project-application?tracking_source=search
-
 // Libraries
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 @import './variables';
 
-@import './Modules/auth/style.scss';
+// https://www.behance.net/gallery/82332567/Project-application?tracking_source=search
 
 html, body, #root {
     height: 100%;
+}
+
+.theme-light {
+    background-color: $lighter;
+}
+
+.theme-dark {
+    background-color: $darker;
 }

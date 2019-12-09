@@ -14,18 +14,18 @@ module.exports = (env, options) => {
             options: {
                 sourceMap: true,
                 sourceComments: true,
-                importLoaders: 1,
-            },
+                importLoaders: 1
+            }
         }, {
             loader: 'postcss-loader',
             options: {
                 plugins: [
                     autoPrefixerPlugin({
-                        browsers: ['> 1%', 'last 2 versions'],
-                    }),
-                ],
-            },
-        },
+                        browsers: ['> 1%', 'last 2 versions']
+                    })
+                ]
+            }
+        }
     ];
 
     const sassStyles = cssStyles.concat([
@@ -33,9 +33,9 @@ module.exports = (env, options) => {
             loader: 'sass-loader',
             options: {
                 sourceMap: true,
-                sourceComments: true,
-            },
-        },
+                sourceComments: true
+            }
+        }
     ]);
 
     if(DEV) {
@@ -54,6 +54,7 @@ module.exports = (env, options) => {
                 port: 3031,
                 overlay: true,
                 historyApiFallback: true,
+                open: true
             }
         };
     } else {
@@ -72,7 +73,7 @@ module.exports = (env, options) => {
                 minimizer: [
                     new MiniCssExtractPlugin({
                         filename: './style/[name].css',
-                        chunkFileName: './style/[id].css',
+                        chunkFileName: './style/[id].css'
                     }),
                 ]
             }
@@ -83,7 +84,7 @@ module.exports = (env, options) => {
         ...webpackConfig,
         performance: { hints: false },
         entry: {
-            main: path.resolve(__dirname, './src')
+            main: path.resolve(__dirname, './src'),
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -124,6 +125,6 @@ module.exports = (env, options) => {
         plugins: [
             new CleanWebpackPlugin(['./dist']),
             new HtmlWebpackPlugin({ template: './public/index.html', inject: false })
-        ],
+        ]
     });
 };

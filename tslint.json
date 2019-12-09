@@ -1,15 +1,28 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended", 
-        "tslint-react"
+        "tslint:latest"
     ],
-    "jsRules": {},
     "rules": {
-        "interface-name": [
+        "semicolon": false,
+        "interface-name": [true, "always-prefix"],
+        "no-constant-condition": true,
+        "quotemark": [true, "single", "jsx-double"],
+        "member-ordering": [
             true,
-            "always-prefix"
-        ]
-    },
-    "rulesDirectory": []
+            {
+                "order": [
+                    "private-static-field",
+                    "protected-static-field",
+                    "private-constructor",
+                    "protected-constructor",
+                    "private-instance-method",
+                    "protected-instance-method",
+                    "public-instance-method"
+                ]
+            }
+        ],
+        "no-submodule-imports": false,
+        "no-implicit-dependencies": [false, ["Components", "Modules", "Services", "Store"]]
+    }
 }

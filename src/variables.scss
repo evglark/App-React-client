@@ -1,47 +1,31 @@
-$white:               #FFFFFF !default;
-$gray-200:            #E9ECEF !default;
-$gray-400:            #CED4DA !default;
-$gray-600:            #6C757D !default;
-$gray-800:            #343A40 !default;
-$black:               #000000 !default;
+//- Colors
+$white:                        #FFFFFF !default;
+$black:                        #000000 !default;
 
-$primary:             #FFB455 !default;
-$green:               #45CD82 !default;
-$red:                 #FE5B76 !default;
-$pink:                #FF69B4 !default;
-$yellow:              #FAB615 !default;
+//- Default light theme
+$the-lightest:                 #FFFFFF;
+$lighter:                      #E9ECEF;
+$light:                        #CED4DA;
+$less-light:                   #6C757D;
 
+$light-common-background:      $the-lightest;
+$light-wrap-background:        $lighter;
+$light-layout-background:      $light;
+$light-element-background:     $less-light;
 
-$text-color:          #2F577A !default;
-$sub-text-color:      #8DA3B6 !default;
+//- Dark theme
+$the-darkest:                  #121212;
+$darker:                       #1c1c1c;
+$dark:                         #262626;
+$less-dark:                    #333333;
 
-// Default theme
-$background-body:                  #F8F9FB;
-$background-layout:                $white;
-$color-fonts-dark:                 $black;
+$dark-common-background:      $less-dark;
+$dark-wrap-background:        $dark;
+$dark-layout-background:      $darker;
+$dark-element-background:     $the-darkest;
 
-// Dark theme
-$background-body-dark:             #262626;
-$background-layout-dark:           #333333;
-$background-hover-dark:            $black;
-$color-fonts-light:                $white;
+//- Common
+$base:                        4px;
+$base2:                       $base*2;
 
-// Fonts
-$heading-for-page:    28px;
-$heading:             3em; // h1
-
-// Common
-$base:                4px;
-$base2:               $base*2;
-
-$border-default:     1px solid $gray-200;
-
-// Height common elements
-$height-header:                     $base*25;   // 100px
-
-$height-tab-bar-item-for-mobil:     $base*15;   // 60px
-$height-tab-bar-item-for-web:       $base*12;   // 48px
-
-// Width elements
-$width-layout-tab-bar-for-web:      $base*45;   // 200px
-$width-layout-tab-bar-for-mobil:    $base*15;   // 60px
+$border-default:              1px solid #E9ECEF;
