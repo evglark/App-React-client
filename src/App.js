@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
-import {Layouts} from 'Components/common/Layouts'
+import {Layouts} from 'Common/components/Layouts'
 import {MainPage} from 'Modules/main'
 import {AboutPage} from 'Modules/about'
 

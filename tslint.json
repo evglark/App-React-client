@@ -23,6 +23,7 @@
             }
         ],
         "no-submodule-imports": false,
-        "no-implicit-dependencies": [false, ["Components", "Modules", "Services", "Store"]]
+        "no-implicit-dependencies": [false, ["Common", "Modules", "Services", "Store"]],
+        "object-literal-sort-keys": false
     }
 }

@@ -17,13 +17,13 @@ export class Input extends React.Component<IInputProps, {}> {
 
     public render(): JSX.Element {
         const {id, name, label, type, placeholder, value, regexp} = this.props;
-        const inputClass: string[] = ['common-input'];
-        const labelClass: string[] = ['common-label'];
+        const inputClass: string[] = ['components-input'];
+        const labelClass: string[] = ['components-label'];
         const regexpTest = regexp && regexp.test(value) || !value;
 
         if(regexp && !regexpTest) {
-            inputClass.push('common-input-error');
-            labelClass.push('common-label-error');
+            inputClass.push('components-input-error');
+            labelClass.push('components-label-error');
         }
 
         return (
