@@ -6,5 +6,3 @@ export interface IInitState {
 export const initState: IInitState = {
     token: '',
 };
-
-

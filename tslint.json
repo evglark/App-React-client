@@ -24,6 +24,7 @@
         ],
         "no-submodule-imports": false,
         "no-implicit-dependencies": [false, ["Common", "Modules", "Services", "Store"]],
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "ordered-imports": false
     }
 }

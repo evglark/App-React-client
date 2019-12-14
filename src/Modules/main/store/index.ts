@@ -1,6 +1,6 @@
 import {createReducer} from 'Store/createReducer'
 
-import {actionHandlers} from './handlers';
 import {initState} from './state';
+import {actionHandlers} from './handlers';
 
 export const mainReducer = createReducer(initState, actionHandlers);
